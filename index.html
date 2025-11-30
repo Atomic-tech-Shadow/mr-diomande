@@ -535,36 +535,55 @@
 </head>
 <body>
     <div class="particles">
-        <svg width="100%" height="100%" viewBox="0 0 1200 1600">
-            <!-- Lignes diagonales -->
-            <line class="line" x1="100" y1="200" x2="400" y2="600" stroke-dasharray="1000"/>
-            <line class="line" x1="300" y1="100" x2="800" y2="800" stroke-dasharray="1000"/>
-            <line class="line" x1="900" y1="150" x2="1100" y2="600" stroke-dasharray="1000"/>
+        <svg width="100%" height="100%" viewBox="0 0 1200 1600" preserveAspectRatio="xMidYMid slice">
+            <defs>
+                <style>
+                    @keyframes flowLine { 0% { stroke-dashoffset: 200; } 100% { stroke-dashoffset: 0; } }
+                    @keyframes rotateSlow { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+                    @keyframes rotateFast { 0% { transform: rotate(0deg); } 100% { transform: rotate(-360deg); } }
+                    @keyframes pulse { 0%, 100% { r: 80; opacity: 0.3; } 50% { r: 120; opacity: 0.1; } }
+                    
+                    .geo-line { stroke: rgba(255,255,255,0.35); stroke-width: 3; animation: flowLine 6s linear infinite; stroke-dasharray: 200; }
+                    .geo-circle { fill: none; stroke: rgba(255,255,255,0.3); stroke-width: 2; }
+                    .geo-circle-1 { animation: rotateSlow 20s linear infinite; transform-origin: 600px 300px; }
+                    .geo-circle-2 { animation: rotateFast 15s linear infinite; transform-origin: 150px 600px; }
+                    .geo-circle-3 { animation: pulse 8s ease-in-out infinite; }
+                    .geo-polygon { fill: none; stroke: rgba(255,255,255,0.25); stroke-width: 2.5; }
+                </style>
+            </defs>
             
-            <!-- Triangles abstraits -->
-            <polygon class="triangle" points="200,800 350,1000 50,1000" transform-origin="200 900"/>
-            <polygon class="triangle" points="1000,400 1150,200 850,200" transform-origin="1000 300"/>
+            <!-- Líneas diagonales animadas -->
+            <line class="geo-line" x1="50" y1="100" x2="500" y2="700"/>
+            <line class="geo-line" x1="200" y1="50" x2="1000" y2="1000"/>
+            <line class="geo-line" x1="1000" y1="100" x2="400" y2="900"/>
+            <line class="geo-line" x1="1100" y1="500" x2="100" y2="1200"/>
             
-            <!-- Cercles géométriques -->
-            <circle class="circle-outline" cx="600" cy="300" r="150" transform-origin="600 300"/>
-            <circle class="circle-outline" cx="150" cy="600" r="100" transform-origin="150 600"/>
-            <circle class="circle-outline" cx="1050" cy="900" r="120" transform-origin="1050 900"/>
+            <!-- Círculos que rotan -->
+            <circle class="geo-circle geo-circle-1" cx="600" cy="300" r="150"/>
+            <circle class="geo-circle geo-circle-2" cx="150" cy="600" r="120"/>
+            <circle class="geo-circle geo-circle-3" cx="1050" cy="900" r="100"/>
             
-            <!-- Formes complexes -->
-            <g opacity="0.1">
-                <path d="M 500 1200 L 600 1000 L 700 1200 Z" stroke="rgba(255,255,255,0.3)" fill="none" stroke-width="2"/>
-                <path d="M 300 400 L 450 300 L 500 500 Z" stroke="rgba(255,255,255,0.3)" fill="none" stroke-width="2"/>
-            </g>
+            <!-- Polígonos geométricos -->
+            <polygon class="geo-polygon" points="300,300 450,150 600,300 450,450"/>
+            <polygon class="geo-polygon" points="900,1200 1000,1000 1100,1200 1000,1400"/>
+            <polygon class="geo-polygon" points="150,1000 250,800 350,1000 250,1200"/>
             
-            <!-- Points animés -->
-            <circle cx="250" cy="400" r="3" fill="rgba(255,255,255,0.4)">
-                <animate attributeName="cy" values="400;500;400" dur="6s" repeatCount="indefinite"/>
+            <!-- Triángulos -->
+            <polygon class="geo-polygon" points="600,100 700,300 500,300" opacity="0.4"/>
+            <polygon class="geo-polygon" points="1100,700 1200,900 1000,900" opacity="0.4"/>
+            
+            <!-- Puntos animados que se mueven -->
+            <circle cx="300" cy="200" r="4" fill="rgba(255,255,255,0.6)">
+                <animate attributeName="cy" values="200;400;200" dur="8s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.3;0.8;0.3" dur="8s" repeatCount="indefinite"/>
             </circle>
-            <circle cx="900" cy="700" r="3" fill="rgba(255,255,255,0.4)">
-                <animate attributeName="cx" values="900;1000;900" dur="8s" repeatCount="indefinite"/>
+            <circle cx="950" cy="500" r="4" fill="rgba(255,255,255,0.6)">
+                <animate attributeName="cx" values="950;1100;950" dur="10s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.3;0.8;0.3" dur="10s" repeatCount="indefinite"/>
             </circle>
-            <circle cx="600" cy="1100" r="3" fill="rgba(255,255,255,0.4)">
-                <animate attributeName="r" values="3;6;3" dur="5s" repeatCount="indefinite"/>
+            <circle cx="600" cy="1400" r="4" fill="rgba(255,255,255,0.6)">
+                <animate attributeName="cx" values="600;700;600" dur="7s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.3;0.8;0.3" dur="7s" repeatCount="indefinite"/>
             </circle>
         </svg>
     </div>
