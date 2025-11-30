@@ -1,45 +1,61 @@
 # Link-In-Bio Portfolio - Mr Diomandé
 
 ## Overview
-A professional link-in-bio page designed to showcase Mr Diomandé's social media presence and professional profiles. Features a modern, aesthetic interface optimized for 100% mobile compatibility.
+Un site link-in-bio professionnel et moderne pour showcaser tous les réseaux sociaux et profils de Mr Diomandé. Design épuré, animations fluides, **100% optimisé mobile**.
 
-## Project Features
-- **Profile Section**: Display name, profession/bio, and profile picture
-- **Statistics Display**: Shows followers, posts, and engagement metrics
-- **Social Media Links**: 7 major platforms (Instagram, Twitter, LinkedIn, YouTube, TikTok, Discord, GitHub)
-- **Beautiful UI**: Gradient background with smooth animations and hover effects
-- **100% Mobile Responsive**: Optimized for all screen sizes
-- **Fast Loading**: Lightweight HTML/CSS with no external dependencies except Font Awesome and Google Fonts
+## Features Implémentées ✓
+✅ **Profil Section** - Photo, nom, bio avec statistiques  
+✅ **Icônes Réseaux** - 7 plateformes principales (Instagram, Twitter, LinkedIn, YouTube, TikTok, Discord, GitHub)  
+✅ **Design Glassmorphism** - Effet de verre dépoli moderne  
+✅ **Fond Animé** - Gradient dynamique + particules flottantes  
+✅ **100% Mobile Responsive** - 4 breakpoints optimisés (768px, 600px, 480px, 360px)  
+✅ **Touch-Friendly** - Boutons ≥60px, pas de tap highlight annoying  
+✅ **Animations Fluides** - Hover effects et transitions smoothes  
 
-## Key Features Implemented
-✓ Centered, aesthetic layout with gradient background
-✓ Floating profile picture animation
-✓ Color-coded social media icons with platform-specific gradients
-✓ Click-to-share social links (all open in new tab)
-✓ Stats section with follower/engagement metrics
-✓ Smooth hover animations and transitions
-✓ Fully responsive design for mobile, tablet, and desktop
-✓ Fast load time with minimal JavaScript
+## Responsive Design
+- **Desktop (>768px)** - 75px boutons, espacing généreux
+- **Tablet (600-768px)** - 68px boutons, padding optimisé
+- **Mobile (480-600px)** - 64px boutons, layout compact
+- **Small Mobile (<480px)** - 60px boutons, version ultra-compacte
+- **Très Petit (<360px)** - Optimisé pour les anciens téléphones
 
-## Project Structure
-- `index.html` - Main page with embedded CSS styling and Font Awesome icons
-- `profil.jpg` - Profile picture (optional, fallback available)
+## Technologies
+- HTML5 sémantique
+- CSS3 moderne (Glassmorphism, Backdrop Filter, Animations)
+- Font Awesome 6.4 pour les icônes
+- Google Fonts Poppins pour la typographie
+- JavaScript vanilla pour les particules
 
-## Running the Project
-The project uses Python's HTTP server on port 5000. The static files are served directly.
+## Structure Fichiers
+```
+.
+├── index.html          # Page principale avec tout le CSS/JS
+├── profil.jpg          # Photo de profil (140x140px)
+├── i.jpg               # Ressource
+├── goat.jpg            # Ressource
+├── love.jpg            # Ressource
+└── merci.png           # Ressource
+```
 
-## Customization
-To update the social media links, edit the href attributes in the link-card elements:
-- Instagram: Update `https://instagram.com`
-- Twitter: Update `https://twitter.com`
-- LinkedIn: Update `https://linkedin.com/in/mrdiomande`
-- YouTube: Update `https://youtube.com/@mrdiomande`
-- TikTok: Update `https://tiktok.com/@mrdiomande`
-- Discord: Update `https://discord.gg`
-- GitHub: Update `https://github.com/mrdiomande`
+## Déploiement
+Utilise Python HTTP Server sur port 5000
+```bash
+python -m http.server 5000 --bind 0.0.0.0
+```
+
+## Personnalisation
+Pour modifier les liens des réseaux sociaux, éditer le `href` dans les balises `<a>` :
+- Instagram: `https://instagram.com/[username]`
+- Twitter: `https://twitter.com/[username]`
+- LinkedIn: `https://linkedin.com/in/[username]`
+- YouTube: `https://youtube.com/@[channel]`
+- TikTok: `https://tiktok.com/@[username]`
+- Discord: `https://discord.gg/[code]`
+- GitHub: `https://github.com/[username]`
 
 ## Recent Changes
-- November 30, 2025: Created professional link-in-bio page with all social media platforms
-- Integrated Mr Diomandé's profile information
-- Implemented mobile-first responsive design
-- Added smooth animations and transitions
+- **Nov 30, 2025** - Création du projet avec design moderne
+- Optimisation complète pour mobile (4 breakpoints)
+- Implémentation du glassmorphism design trend
+- Fond animé avec gradient dynamique et particules
+- Intégration de toutes les images du ZIP
