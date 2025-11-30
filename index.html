@@ -78,8 +78,7 @@
         
         .profile-section {
             text-align: center;
-            margin-bottom: 40px;
-            padding: 40px 30px;
+            padding: 50px 30px 35px;
             position: relative;
         }
         
@@ -161,139 +160,133 @@
         
         .links-section {
             display: flex;
-            flex-direction: column;
-            gap: 14px;
-            padding: 30px;
-            padding-top: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 40px 30px;
+            padding-top: 30px;
         }
         
-        .link-card {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 18px 24px;
-            border-radius: 16px;
-            text-decoration: none;
-            color: white;
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            cursor: pointer;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            position: relative;
-            overflow: hidden;
-            font-weight: 600;
-        }
-        
-        .link-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.5s;
-        }
-        
-        .link-card:hover::before {
-            left: 100%;
-        }
-        
-        .link-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            background: rgba(255, 255, 255, 0.25);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-            border-color: rgba(255, 255, 255, 0.4);
-        }
-        
-        .link-content {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            flex-grow: 1;
-            position: relative;
-            z-index: 2;
-        }
-        
-        .link-icon {
-            font-size: 26px;
-            width: 50px;
-            height: 50px;
+        .link-icon-button {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 12px;
+            font-size: 32px;
+            color: white;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            cursor: pointer;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .link-icon-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
             background: rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
-            flex-shrink: 0;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
         }
         
-        .link-card:hover .link-icon {
-            transform: scale(1.1) rotate(-10deg);
-            background: rgba(255, 255, 255, 0.4);
+        .link-icon-button:hover::before {
+            width: 100px;
+            height: 100px;
         }
         
-        .link-text {
-            display: flex;
-            flex-direction: column;
+        .link-icon-button:hover {
+            transform: translateY(-12px) scale(1.15);
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.6);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
         }
         
-        .link-title {
-            font-weight: 700;
-            font-size: 16px;
-            margin-bottom: 2px;
-        }
-        
-        .link-desc {
-            font-size: 12px;
-            opacity: 0.85;
-            font-weight: 400;
-        }
-        
-        .arrow {
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 20px;
+        .link-icon-button i {
             position: relative;
             z-index: 2;
-            transition: all 0.3s ease;
+            transition: transform 0.3s ease;
         }
         
-        .link-card:hover .arrow {
-            transform: translateX(5px);
-            color: white;
+        .link-icon-button:hover i {
+            transform: rotate(10deg) scale(1.1);
         }
         
-        /* Individual card styles with nice colors */
-        .link-card:nth-child(1) {
-            background: linear-gradient(135deg, rgba(233, 30, 99, 0.4) 0%, rgba(156, 39, 176, 0.4) 100%);
+        /* Instagram */
+        .link-icon-button:nth-child(1) {
+            background: linear-gradient(135deg, rgba(233, 30, 99, 0.3) 0%, rgba(156, 39, 176, 0.3) 100%);
         }
         
-        .link-card:nth-child(2) {
-            background: linear-gradient(135deg, rgba(29, 161, 242, 0.4) 0%, rgba(15, 127, 208, 0.4) 100%);
+        .link-icon-button:nth-child(1):hover {
+            background: linear-gradient(135deg, rgba(233, 30, 99, 0.6) 0%, rgba(156, 39, 176, 0.6) 100%);
         }
         
-        .link-card:nth-child(3) {
-            background: linear-gradient(135deg, rgba(0, 119, 181, 0.4) 0%, rgba(0, 56, 95, 0.4) 100%);
+        /* Twitter */
+        .link-icon-button:nth-child(2) {
+            background: linear-gradient(135deg, rgba(29, 161, 242, 0.3) 0%, rgba(15, 127, 208, 0.3) 100%);
         }
         
-        .link-card:nth-child(4) {
-            background: linear-gradient(135deg, rgba(255, 0, 0, 0.4) 0%, rgba(204, 0, 0, 0.4) 100%);
+        .link-icon-button:nth-child(2):hover {
+            background: linear-gradient(135deg, rgba(29, 161, 242, 0.6) 0%, rgba(15, 127, 208, 0.6) 100%);
         }
         
-        .link-card:nth-child(5) {
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(37, 244, 238, 0.3) 100%);
+        /* LinkedIn */
+        .link-icon-button:nth-child(3) {
+            background: linear-gradient(135deg, rgba(0, 119, 181, 0.3) 0%, rgba(0, 56, 95, 0.3) 100%);
         }
         
-        .link-card:nth-child(6) {
-            background: linear-gradient(135deg, rgba(88, 101, 242, 0.4) 0%, rgba(63, 75, 159, 0.4) 100%);
+        .link-icon-button:nth-child(3):hover {
+            background: linear-gradient(135deg, rgba(0, 119, 181, 0.6) 0%, rgba(0, 56, 95, 0.6) 100%);
         }
         
-        .link-card:nth-child(7) {
-            background: linear-gradient(135deg, rgba(51, 51, 51, 0.4) 0%, rgba(0, 0, 0, 0.4) 100%);
+        /* YouTube */
+        .link-icon-button:nth-child(4) {
+            background: linear-gradient(135deg, rgba(255, 0, 0, 0.3) 0%, rgba(204, 0, 0, 0.3) 100%);
+        }
+        
+        .link-icon-button:nth-child(4):hover {
+            background: linear-gradient(135deg, rgba(255, 0, 0, 0.6) 0%, rgba(204, 0, 0, 0.6) 100%);
+        }
+        
+        /* TikTok */
+        .link-icon-button:nth-child(5) {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.3) 0%, rgba(37, 244, 238, 0.3) 100%);
+        }
+        
+        .link-icon-button:nth-child(5):hover {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(37, 244, 238, 0.6) 100%);
+        }
+        
+        /* Discord */
+        .link-icon-button:nth-child(6) {
+            background: linear-gradient(135deg, rgba(88, 101, 242, 0.3) 0%, rgba(63, 75, 159, 0.3) 100%);
+        }
+        
+        .link-icon-button:nth-child(6):hover {
+            background: linear-gradient(135deg, rgba(88, 101, 242, 0.6) 0%, rgba(63, 75, 159, 0.6) 100%);
+        }
+        
+        /* GitHub */
+        .link-icon-button:nth-child(7) {
+            background: linear-gradient(135deg, rgba(51, 51, 51, 0.3) 0%, rgba(0, 0, 0, 0.3) 100%);
+        }
+        
+        .link-icon-button:nth-child(7):hover {
+            background: linear-gradient(135deg, rgba(51, 51, 51, 0.6) 0%, rgba(0, 0, 0, 0.6) 100%);
         }
         
         @media (max-width: 480px) {
             .profile-section {
-                padding: 35px 20px;
+                padding: 40px 20px 30px;
             }
             
             .name {
@@ -306,19 +299,14 @@
             }
             
             .links-section {
-                padding: 25px 20px;
+                padding: 35px 20px;
+                gap: 16px;
             }
             
-            .link-card {
-                padding: 16px 20px;
-            }
-            
-            .stats {
-                gap: 10px;
-            }
-            
-            .stat-card {
-                padding: 15px;
+            .link-icon-button {
+                width: 60px;
+                height: 60px;
+                font-size: 28px;
             }
         }
     </style>
@@ -349,95 +337,32 @@
         </div>
         
         <div class="glass links-section">
-            <a href="https://instagram.com" class="link-card" target="_blank">
-                <div class="link-content">
-                    <div class="link-icon">
-                        <i class="fab fa-instagram"></i>
-                    </div>
-                    <div class="link-text">
-                        <div class="link-title">Instagram</div>
-                        <div class="link-desc">@mrdiomande</div>
-                    </div>
-                </div>
-                <div class="arrow"><i class="fas fa-arrow-right"></i></div>
+            <a href="https://instagram.com" class="link-icon-button" target="_blank" title="Instagram">
+                <i class="fab fa-instagram"></i>
             </a>
             
-            <a href="https://twitter.com" class="link-card" target="_blank">
-                <div class="link-content">
-                    <div class="link-icon">
-                        <i class="fab fa-twitter"></i>
-                    </div>
-                    <div class="link-text">
-                        <div class="link-title">Twitter</div>
-                        <div class="link-desc">@mrdiomande</div>
-                    </div>
-                </div>
-                <div class="arrow"><i class="fas fa-arrow-right"></i></div>
+            <a href="https://twitter.com" class="link-icon-button" target="_blank" title="Twitter">
+                <i class="fab fa-twitter"></i>
             </a>
             
-            <a href="https://linkedin.com/in/mrdiomande" class="link-card" target="_blank">
-                <div class="link-content">
-                    <div class="link-icon">
-                        <i class="fab fa-linkedin"></i>
-                    </div>
-                    <div class="link-text">
-                        <div class="link-title">LinkedIn</div>
-                        <div class="link-desc">Mr Diomandé</div>
-                    </div>
-                </div>
-                <div class="arrow"><i class="fas fa-arrow-right"></i></div>
+            <a href="https://linkedin.com/in/mrdiomande" class="link-icon-button" target="_blank" title="LinkedIn">
+                <i class="fab fa-linkedin"></i>
             </a>
             
-            <a href="https://youtube.com/@mrdiomande" class="link-card" target="_blank">
-                <div class="link-content">
-                    <div class="link-icon">
-                        <i class="fab fa-youtube"></i>
-                    </div>
-                    <div class="link-text">
-                        <div class="link-title">YouTube</div>
-                        <div class="link-desc">Tutoriels & Vlogs</div>
-                    </div>
-                </div>
-                <div class="arrow"><i class="fas fa-arrow-right"></i></div>
+            <a href="https://youtube.com/@mrdiomande" class="link-icon-button" target="_blank" title="YouTube">
+                <i class="fab fa-youtube"></i>
             </a>
             
-            <a href="https://tiktok.com/@mrdiomande" class="link-card" target="_blank">
-                <div class="link-content">
-                    <div class="link-icon">
-                        <i class="fab fa-tiktok"></i>
-                    </div>
-                    <div class="link-text">
-                        <div class="link-title">TikTok</div>
-                        <div class="link-desc">@mrdiomande</div>
-                    </div>
-                </div>
-                <div class="arrow"><i class="fas fa-arrow-right"></i></div>
+            <a href="https://tiktok.com/@mrdiomande" class="link-icon-button" target="_blank" title="TikTok">
+                <i class="fab fa-tiktok"></i>
             </a>
             
-            <a href="https://discord.gg" class="link-card" target="_blank">
-                <div class="link-content">
-                    <div class="link-icon">
-                        <i class="fab fa-discord"></i>
-                    </div>
-                    <div class="link-text">
-                        <div class="link-title">Discord Server</div>
-                        <div class="link-desc">Rejoignez la communauté</div>
-                    </div>
-                </div>
-                <div class="arrow"><i class="fas fa-arrow-right"></i></div>
+            <a href="https://discord.gg" class="link-icon-button" target="_blank" title="Discord">
+                <i class="fab fa-discord"></i>
             </a>
             
-            <a href="https://github.com/mrdiomande" class="link-card" target="_blank">
-                <div class="link-content">
-                    <div class="link-icon">
-                        <i class="fab fa-github"></i>
-                    </div>
-                    <div class="link-text">
-                        <div class="link-title">GitHub</div>
-                        <div class="link-desc">Mes projets</div>
-                    </div>
-                </div>
-                <div class="arrow"><i class="fas fa-arrow-right"></i></div>
+            <a href="https://github.com/mrdiomande" class="link-icon-button" target="_blank" title="GitHub">
+                <i class="fab fa-github"></i>
             </a>
         </div>
     </div>
