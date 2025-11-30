@@ -32,7 +32,7 @@
             100% { background-position: 0% 50%; }
         }
         
-        /* Animated background particles */
+        /* Animated geometric background */
         .particles {
             position: fixed;
             top: 0;
@@ -44,20 +44,53 @@
             pointer-events: none;
         }
         
-        .particle {
+        svg {
+            width: 100%;
+            height: 100%;
             position: absolute;
-            width: 10px;
-            height: 10px;
-            background: rgba(255, 255, 255, 0.5);
-            border-radius: 50%;
-            animation: float 20s infinite;
+            top: 0;
+            left: 0;
         }
         
-        @keyframes float {
-            0% { transform: translateY(100vh) translateX(0) rotate(0deg); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translateY(-100vh) translateX(100px) rotate(360deg); opacity: 0; }
+        .geometric-shape {
+            opacity: 0.15;
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.1));
+        }
+        
+        .line {
+            stroke: rgba(255, 255, 255, 0.3);
+            stroke-width: 2;
+            animation: drawLine 8s ease-in-out infinite;
+        }
+        
+        .triangle {
+            fill: none;
+            stroke: rgba(255, 255, 255, 0.2);
+            stroke-width: 2;
+            animation: rotateTriangle 12s linear infinite;
+        }
+        
+        .circle-outline {
+            fill: none;
+            stroke: rgba(255, 255, 255, 0.2);
+            stroke-width: 2;
+            animation: rotateCircle 15s linear infinite;
+        }
+        
+        @keyframes drawLine {
+            0%, 100% { stroke-dashoffset: 1000; }
+            50% { stroke-dashoffset: 0; }
+        }
+        
+        @keyframes rotateTriangle {
+            0% { transform: rotate(0deg) translateX(0); }
+            50% { transform: rotate(180deg) translateX(20px); }
+            100% { transform: rotate(360deg) translateX(0); }
+        }
+        
+        @keyframes rotateCircle {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
         
         .container {
@@ -457,7 +490,40 @@
     </style>
 </head>
 <body>
-    <div class="particles" id="particlesContainer"></div>
+    <div class="particles">
+        <svg width="100%" height="100%" viewBox="0 0 1200 1600">
+            <!-- Lignes diagonales -->
+            <line class="line" x1="100" y1="200" x2="400" y2="600" stroke-dasharray="1000"/>
+            <line class="line" x1="300" y1="100" x2="800" y2="800" stroke-dasharray="1000"/>
+            <line class="line" x1="900" y1="150" x2="1100" y2="600" stroke-dasharray="1000"/>
+            
+            <!-- Triangles abstraits -->
+            <polygon class="triangle" points="200,800 350,1000 50,1000" transform-origin="200 900"/>
+            <polygon class="triangle" points="1000,400 1150,200 850,200" transform-origin="1000 300"/>
+            
+            <!-- Cercles géométriques -->
+            <circle class="circle-outline" cx="600" cy="300" r="150" transform-origin="600 300"/>
+            <circle class="circle-outline" cx="150" cy="600" r="100" transform-origin="150 600"/>
+            <circle class="circle-outline" cx="1050" cy="900" r="120" transform-origin="1050 900"/>
+            
+            <!-- Formes complexes -->
+            <g opacity="0.1">
+                <path d="M 500 1200 L 600 1000 L 700 1200 Z" stroke="rgba(255,255,255,0.3)" fill="none" stroke-width="2"/>
+                <path d="M 300 400 L 450 300 L 500 500 Z" stroke="rgba(255,255,255,0.3)" fill="none" stroke-width="2"/>
+            </g>
+            
+            <!-- Points animés -->
+            <circle cx="250" cy="400" r="3" fill="rgba(255,255,255,0.4)">
+                <animate attributeName="cy" values="400;500;400" dur="6s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="900" cy="700" r="3" fill="rgba(255,255,255,0.4)">
+                <animate attributeName="cx" values="900;1000;900" dur="8s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="600" cy="1100" r="3" fill="rgba(255,255,255,0.4)">
+                <animate attributeName="r" values="3;6;3" dur="5s" repeatCount="indefinite"/>
+            </circle>
+        </svg>
+    </div>
     
     <div class="container">
         <div class="glass profile-section">
@@ -512,25 +578,5 @@
         </div>
     </div>
     
-    <script>
-        // Créer les particules animées
-        function createParticles() {
-            const container = document.getElementById('particlesContainer');
-            const particleCount = 15;
-            
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.width = (Math.random() * 5 + 3) + 'px';
-                particle.style.height = particle.style.width;
-                particle.style.animationDuration = (Math.random() * 10 + 20) + 's';
-                particle.style.animationDelay = (Math.random() * 5) + 's';
-                container.appendChild(particle);
-            }
-        }
-        
-        createParticles();
-    </script>
 </body>
 </html>
