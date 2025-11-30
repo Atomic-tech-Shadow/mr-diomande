@@ -2,6 +2,23 @@
 
 <div align="center">
 
+<svg width="300" height="150" viewBox="0 0 300 150" xmlns="http://www.w3.org/2000/svg" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%); border-radius: 20px;">
+  <defs>
+    <style>
+      @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
+      @keyframes glow { 0%, 100% { filter: drop-shadow(0 0 5px rgba(255,255,255,0.5)); } 50% { filter: drop-shadow(0 0 15px rgba(255,255,255,0.9)); } }
+      @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+      .logo-text { font-family: 'Poppins', sans-serif; font-size: 28px; font-weight: 700; fill: white; animation: float 3s ease-in-out infinite; }
+      .circle { animation: spin 8s linear infinite; }
+      .glow-circle { animation: glow 2s ease-in-out infinite; }
+    </style>
+  </defs>
+  <circle class="glow-circle" cx="150" cy="75" r="70" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+  <circle class="circle" cx="150" cy="75" r="55" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-dasharray="5,5"/>
+  <circle cx="150" cy="75" r="45" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.4)" stroke-width="2"/>
+  <text class="logo-text" x="150" y="85" text-anchor="middle">MrD</text>
+</svg>
+
 [![Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com)
 [![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
 [![HTML5](https://img.shields.io/badge/HTML5-E34C26?style=for-the-badge&logo=html5&logoColor=white)](/)
