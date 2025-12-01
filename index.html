@@ -21,10 +21,9 @@
             animation: gradientShift 25s ease infinite;
             min-height: 100vh;
             display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            overflow: hidden;
+            flex-direction: column;
+            padding: 0;
+            overflow-x: hidden;
             position: relative;
         }
         
@@ -32,6 +31,100 @@
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
+        }
+        
+        /* Theme selector */
+        .theme-selector {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            gap: 10px;
+            background: rgba(0,0,0,0.7);
+            padding: 10px;
+            border-radius: 30px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .theme-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-size: 18px;
+        }
+        
+        .theme-btn.light {
+            background: #f8f9fa;
+            color: #ffc107;
+        }
+        
+        .theme-btn.dark {
+            background: #343a40;
+            color: #adb5bd;
+        }
+        
+        .theme-btn.gold {
+            background: linear-gradient(45deg, #ffd700, #ffed4e, #daa520);
+            color: #000;
+        }
+        
+        .theme-btn.active {
+            transform: scale(1.1);
+            box-shadow: 0 0 10px currentColor;
+        }
+        
+        /* Motivation banner */
+        .motivation-banner {
+            background: linear-gradient(90deg, #ff6b6b, #ff8e53, #ff6b6b);
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+            z-index: 100;
+        }
+        
+        .motivation-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmer 3s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+        
+        .motivation-content {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-grow: 1;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .motivation-text {
+            margin: 0;
+            font-weight: 600;
+            font-size: 16px;
+            flex-grow: 1;
+            text-align: center;
         }
         
         /* Animated geometric background */
@@ -54,14 +147,22 @@
             left: 0;
         }
         
-        .container {
-            max-width: 450px;
-            width: 100%;
-            z-index: 10;
+        .main-content {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
             position: relative;
+            z-index: 10;
         }
         
-        /* Premium Glass morphism effect */
+        .container {
+            max-width: 900px;
+            width: 100%;
+        }
+        
+        /* Premium Glass morphism */
         .glass {
             background: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(30px);
@@ -172,7 +273,7 @@
         
         .links-section {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(5, 1fr);
             gap: 16px;
             padding: 45px 40px;
             padding-top: 35px;
@@ -236,170 +337,216 @@
             transform: rotate(15deg) scale(1.15);
         }
         
-        /* Instagram */
+        /* Social colors */
         .link-icon-button:nth-child(1) {
-            background: linear-gradient(135deg, rgba(233, 30, 99, 0.2) 0%, rgba(156, 39, 176, 0.2) 100%);
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.2) 0%, rgba(22, 163, 74, 0.2) 100%);
+        }
+        .link-icon-button:nth-child(1):hover {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.4) 0%, rgba(22, 163, 74, 0.4) 100%);
         }
         
-        .link-icon-button:nth-child(1):hover {
+        .link-icon-button:nth-child(2) {
+            background: linear-gradient(135deg, rgba(59, 89, 152, 0.2) 0%, rgba(24, 119, 242, 0.2) 100%);
+        }
+        .link-icon-button:nth-child(2):hover {
+            background: linear-gradient(135deg, rgba(59, 89, 152, 0.4) 0%, rgba(24, 119, 242, 0.4) 100%);
+        }
+        
+        .link-icon-button:nth-child(3) {
+            background: linear-gradient(135deg, rgba(233, 30, 99, 0.2) 0%, rgba(156, 39, 176, 0.2) 100%);
+        }
+        .link-icon-button:nth-child(3):hover {
             background: linear-gradient(135deg, rgba(233, 30, 99, 0.4) 0%, rgba(156, 39, 176, 0.4) 100%);
         }
         
-        /* Twitter */
-        .link-icon-button:nth-child(2) {
+        .link-icon-button:nth-child(4) {
             background: linear-gradient(135deg, rgba(29, 161, 242, 0.2) 0%, rgba(15, 127, 208, 0.2) 100%);
         }
-        
-        .link-icon-button:nth-child(2):hover {
+        .link-icon-button:nth-child(4):hover {
             background: linear-gradient(135deg, rgba(29, 161, 242, 0.4) 0%, rgba(15, 127, 208, 0.4) 100%);
         }
         
-        /* LinkedIn */
-        .link-icon-button:nth-child(3) {
-            background: linear-gradient(135deg, rgba(0, 119, 181, 0.2) 0%, rgba(0, 56, 95, 0.2) 100%);
-        }
-        
-        .link-icon-button:nth-child(3):hover {
-            background: linear-gradient(135deg, rgba(0, 119, 181, 0.4) 0%, rgba(0, 56, 95, 0.4) 100%);
-        }
-        
-        /* YouTube */
-        .link-icon-button:nth-child(4) {
-            background: linear-gradient(135deg, rgba(255, 0, 0, 0.2) 0%, rgba(204, 0, 0, 0.2) 100%);
-        }
-        
-        .link-icon-button:nth-child(4):hover {
-            background: linear-gradient(135deg, rgba(255, 0, 0, 0.4) 0%, rgba(204, 0, 0, 0.4) 100%);
-        }
-        
-        /* TikTok */
         .link-icon-button:nth-child(5) {
             background: linear-gradient(135deg, rgba(0, 0, 0, 0.2) 0%, rgba(37, 244, 238, 0.2) 100%);
         }
-        
         .link-icon-button:nth-child(5):hover {
             background: linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(37, 244, 238, 0.4) 100%);
         }
         
-        /* Discord */
-        .link-icon-button:nth-child(6) {
-            background: linear-gradient(135deg, rgba(88, 101, 242, 0.2) 0%, rgba(63, 75, 159, 0.2) 100%);
-        }
-        
-        .link-icon-button:nth-child(6):hover {
-            background: linear-gradient(135deg, rgba(88, 101, 242, 0.4) 0%, rgba(63, 75, 159, 0.4) 100%);
-        }
-        
-        /* GitHub */
-        .link-icon-button:nth-child(7) {
-            background: linear-gradient(135deg, rgba(51, 51, 51, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%);
-        }
-        
-        .link-icon-button:nth-child(7):hover {
-            background: linear-gradient(135deg, rgba(51, 51, 51, 0.4) 0%, rgba(0, 0, 0, 0.4) 100%);
-        }
-        
-        .footer {
+        .portfolio {
+            padding: 60px 20px;
             text-align: center;
-            padding: 35px 20px;
-            color: rgba(255, 255, 255, 0.75);
-            font-size: 13px;
-            margin-top: 25px;
             position: relative;
             z-index: 10;
         }
         
-        .footer-divider {
-            width: 80px;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
-            margin: 25px auto;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-        }
-        
-        .footer-text {
-            font-weight: 300;
-            letter-spacing: 0.5px;
-            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-        }
-        
-        .footer-text strong {
+        .portfolio h2 {
+            font-size: 32px;
             color: white;
+            margin-bottom: 40px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+        
+        .project-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+        }
+        
+        .project-image {
+            height: 180px;
+            overflow: hidden;
+            background: rgba(0, 0, 0, 0.2);
+        }
+        
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .project-card:hover .project-image img {
+            transform: scale(1.1);
+        }
+        
+        .project-info {
+            padding: 25px;
+            color: white;
+        }
+        
+        .project-info h3 {
+            margin: 0 0 10px;
+            font-size: 20px;
             font-weight: 600;
         }
         
-        .footer:hover {
-            color: rgba(255, 255, 255, 0.95);
+        .project-info p {
+            margin: 0 0 15px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
+        }
+        
+        .project-status {
+            display: inline-block;
+            padding: 6px 16px;
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .gallery-section {
+            padding: 60px 20px;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .gallery-section h2 {
+            font-size: 32px;
+            color: white;
+            margin-bottom: 40px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            cursor: pointer;
+            aspect-ratio: 1;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            transition: all 0.4s ease;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.15);
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 13px;
+            position: relative;
+            z-index: 10;
+            background: rgba(0, 0, 0, 0.3);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .typing-effect {
+            font-weight: 600;
+            font-size: 16px;
+        }
+        
+        .cursor {
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
         }
         
         @media (max-width: 768px) {
-            .container {
-                max-width: 100%;
-                width: 100%;
-            }
-            
-            .glass {
-                border-radius: 20px;
+            .profile-section {
+                padding: 45px 30px 30px;
             }
             
             .links-section {
                 grid-template-columns: repeat(4, 1fr);
             }
+            
+            .motivation-text {
+                font-size: 14px;
+            }
         }
         
         @media (max-width: 600px) {
-            body {
-                padding: 15px;
-            }
-            
             .profile-section {
-                padding: 45px 30px 30px;
+                padding: 40px 25px 25px;
             }
             
             .name {
                 font-size: 32px;
-                margin-bottom: 10px;
-            }
-            
-            .bio {
-                font-size: 14px;
-                line-height: 1.6;
-            }
-            
-            .profile-pic {
-                width: 130px;
-                height: 130px;
-                margin-bottom: 25px;
-                border: 4px solid rgba(255, 255, 255, 0.9);
-            }
-            
-            .logo-svg {
-                width: 80px;
-                height: 80px;
-                margin-bottom: 25px;
-            }
-            
-            .stats {
-                gap: 12px;
-                margin: 30px 0;
-            }
-            
-            .stat-card {
-                padding: 18px 12px;
-                border-radius: 14px;
-            }
-            
-            .stat-number {
-                font-size: 28px;
-            }
-            
-            .stat-label {
-                font-size: 11px;
             }
             
             .links-section {
-                padding: 35px 25px;
-                gap: 14px;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 12px;
+                padding: 30px 25px;
             }
             
             .link-icon-button {
@@ -408,97 +555,56 @@
                 font-size: 26px;
             }
             
-            .link-icon-button:hover {
-                transform: translateY(-12px) scale(1.15);
+            .portfolio {
+                padding: 40px 15px;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
             }
         }
         
         @media (max-width: 480px) {
-            body {
-                padding: 12px;
+            .theme-selector {
+                top: 10px;
+                right: 10px;
             }
             
             .profile-section {
-                padding: 40px 25px 25px;
+                padding: 35px 20px 20px;
             }
             
             .name {
                 font-size: 28px;
-                margin-bottom: 8px;
             }
             
             .bio {
                 font-size: 13px;
             }
             
-            .profile-pic {
-                width: 120px;
-                height: 120px;
-                margin-bottom: 20px;
+            .links-section {
+                grid-template-columns: repeat(3, 1fr);
+                padding: 25px 15px;
             }
             
-            .stats {
-                gap: 10px;
-                margin: 25px 0;
+            .link-icon-button {
+                width: 60px;
+                height: 60px;
+                font-size: 24px;
             }
             
             .stat-card {
                 padding: 16px 10px;
-                border-radius: 12px;
             }
             
             .stat-number {
                 font-size: 26px;
-            }
-            
-            .links-section {
-                padding: 30px 20px;
-                gap: 12px;
-            }
-            
-            .link-icon-button {
-                width: 62px;
-                height: 62px;
-                font-size: 24px;
-            }
-            
-            .link-icon-button:hover {
-                transform: translateY(-10px) scale(1.12);
-            }
-        }
-        
-        @media (max-width: 360px) {
-            .profile-section {
-                padding: 35px 20px 20px;
-            }
-            
-            .name {
-                font-size: 26px;
-            }
-            
-            .bio {
-                font-size: 12px;
-            }
-            
-            .profile-pic {
-                width: 110px;
-                height: 110px;
-            }
-            
-            .stats {
-                gap: 8px;
-                margin: 20px 0;
-            }
-            
-            .links-section {
-                padding: 25px 15px;
-                gap: 10px;
-            }
-            
-            .link-icon-button {
-                width: 58px;
-                height: 58px;
-                font-size: 22px;
             }
         }
     </style>
@@ -531,17 +637,11 @@
                     .glitch { animation: glitchFloat 8s ease-in-out infinite; }
                 </style>
             </defs>
-            
-            <!-- Organic fluid blobs with gradients -->
             <ellipse class="blob blob1" cx="200" cy="300" rx="120" ry="150" fill="url(#grad1)" />
             <ellipse class="blob blob2" cx="1000" cy="400" rx="140" ry="110" fill="url(#grad2)" />
             <ellipse class="blob blob3" cx="600" cy="1200" rx="130" ry="140" fill="url(#grad1)" />
-            
-            <!-- Morphing geometric accent shapes -->
             <path class="glitch" d="M 150 150 Q 100 100, 200 50 Q 250 100, 200 150 Q 100 200, 150 150" stroke="rgba(255,255,255,0.2)" stroke-width="2" fill="none" />
             <path class="glitch" style="animation-delay: 2s" d="M 950 900 Q 900 850, 1000 800 Q 1050 850, 1000 900 Q 900 950, 950 900" stroke="rgba(255,255,255,0.15)" stroke-width="2" fill="none" />
-            
-            <!-- Subtle grid/tech accent -->
             <g opacity="0.08" stroke="rgba(255,255,255,0.3)" stroke-width="1">
                 <line x1="0" y1="400" x2="1200" y2="400" />
                 <line x1="0" y1="800" x2="1200" y2="800" />
@@ -552,65 +652,166 @@
         </svg>
     </div>
     
-    <div class="container">
-        <div class="glass profile-section">
-            <svg class="logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                    <style>
-                        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-                        .svg-circle { animation: spin 10s linear infinite; }
-                        .svg-text { font-family: 'Poppins', sans-serif; font-size: 32px; font-weight: 700; fill: white; text-anchor: middle; }
-                    </style>
-                </defs>
-                <circle class="svg-circle" cx="50" cy="50" r="45" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2" stroke-dasharray="8,4"/>
-                <circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"/>
-                <circle cx="50" cy="50" r="35" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
-                <text class="svg-text" x="50" y="60">D</text>
-            </svg>
-            
-            <img src="profil.jpg" alt="Profile" class="profile-pic">
-            <h1 class="name">Mr Diomandé</h1>
-            <p class="bio">Influenceur • Développeur Web • Designer • Ingénieur</p>
-            
-            <div class="stats">
-                <div class="stat-card">
-                    <span class="stat-number">50K</span>
-                    <span class="stat-label">Followers</span>
+    <div class="theme-selector">
+        <button class="theme-btn light active" data-theme="light" title="Light Mode">
+            <i class="fas fa-sun"></i>
+        </button>
+        <button class="theme-btn dark" data-theme="dark" title="Dark Mode">
+            <i class="fas fa-moon"></i>
+        </button>
+        <button class="theme-btn gold" data-theme="gold" title="Gold Mode">
+            <i class="fas fa-crown"></i>
+        </button>
+    </div>
+    
+    <div class="motivation-banner">
+        <div class="motivation-content">
+            <p class="motivation-text">"Le sommeil c'est pour les héritiers, et le travail c'est pour les guerriers comme Diom"</p>
+        </div>
+    </div>
+    
+    <div class="main-content">
+        <div class="container">
+            <div class="glass profile-section">
+                <svg class="logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <style>
+                            @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+                            .svg-circle { animation: spin 10s linear infinite; }
+                            .svg-text { font-family: 'Poppins', sans-serif; font-size: 32px; font-weight: 700; fill: white; text-anchor: middle; }
+                        </style>
+                    </defs>
+                    <circle class="svg-circle" cx="50" cy="50" r="45" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2" stroke-dasharray="8,4"/>
+                    <circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"/>
+                    <circle cx="50" cy="50" r="35" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+                    <text class="svg-text" x="50" y="60">D</text>
+                </svg>
+                
+                <img src="profil.jpg" alt="Profile" class="profile-pic">
+                <h1 class="name">Mr Diomandé</h1>
+                <p class="bio">Influenceur • Développeur Web • Designer • Ingénieur</p>
+                
+                <div class="stats">
+                    <div class="stat-card">
+                        <span class="stat-number">12.5K</span>
+                        <span class="stat-label">Abonnés</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">47</span>
+                        <span class="stat-label">Projets</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">3</span>
+                        <span class="stat-label">Ans d'expérience</span>
+                    </div>
                 </div>
-                <div class="stat-card">
-                    <span class="stat-number">120</span>
-                    <span class="stat-label">Posts</span>
+            </div>
+            
+            <div class="glass links-section">
+                <a href="https://wa.me/2250574187127" class="link-icon-button" target="_blank" title="WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="https://www.facebook.com/share/19z8TnLsSy/" class="link-icon-button" target="_blank" title="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://www.instagram.com/capidiom2.7?igsh=aGcwdXV4N2VyeXNp" class="link-icon-button" target="_blank" title="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://x.com/AmaraD52591?t=HnUOvL9T3mb_LWG9JaxKXw&s=08" class="link-icon-button" target="_blank" title="Twitter">
+                    <i class="fab fa-x-twitter"></i>
+                </a>
+                <a href="https://www.tiktok.com/@yongdioma?_t=ZM-8yYDojuMa1w&_r=1" class="link-icon-button" target="_blank" title="TikTok">
+                    <i class="fab fa-tiktok"></i>
+                </a>
+            </div>
+            
+            <div class="portfolio">
+                <h2>Mes Projets Créatifs</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="https://via.placeholder.com/400x200/4a5568/ffffff?text=Application+Web" alt="Application Web">
+                        </div>
+                        <div class="project-info">
+                            <h3>Application Web</h3>
+                            <p>Développement front-end avec React</p>
+                            <span class="project-status">Terminé</span>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="https://via.placeholder.com/400x200/2d3748/ffffff?text=Design+UI/UX" alt="Design UI/UX">
+                        </div>
+                        <div class="project-info">
+                            <h3>Design UI/UX</h3>
+                            <p>Création d'interfaces utilisateur modernes</p>
+                            <span class="project-status">En cours</span>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="https://via.placeholder.com/400x200/744210/ffffff?text=Production+Musicale" alt="Production musicale">
+                        </div>
+                        <div class="project-info">
+                            <h3>Production Musicale</h3>
+                            <p>Composition et arrangement sur BandLab</p>
+                            <span class="project-status">Terminé</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="stat-card">
-                    <span class="stat-number">98%</span>
-                    <span class="stat-label">Engagement</span>
+            </div>
+            
+            <div class="gallery-section">
+                <h2>Mon Univers Créatif</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="merci.png" alt="Reconnaissance" onerror="this.src='https://via.placeholder.com/300x300/4a5568/ffffff?text=Reconnaissance'">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="i.jpg" alt="Portrait" onerror="this.src='https://via.placeholder.com/300x300/2d3748/ffffff?text=Portrait'">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="love.jpg" alt="Passion" onerror="this.src='https://via.placeholder.com/300x300/702459/ffffff?text=Passion'">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="goat.jpg" alt="Réussite" onerror="this.src='https://via.placeholder.com/300x300/744210/ffffff?text=Réussite'">
+                    </div>
                 </div>
             </div>
         </div>
-        
-        <div class="glass links-section">
-            <a href="https://wa.me/2250574187127" class="link-icon-button" target="_blank" title="WhatsApp">
-                <i class="fab fa-whatsapp"></i>
-            </a>
-            <a href="https://t.me/TheCapidiom" class="link-icon-button" target="_blank" title="Telegram">
-                <i class="fab fa-telegram"></i>
-            </a>
-            <a href="https://www.tiktok.com/@yongdioma?_t=ZM-8yYDojuMa1w&_r=1" class="link-icon-button" target="_blank" title="TikTok">
-                <i class="fab fa-tiktok"></i>
-            </a>
-            <a href="https://www.snapchat.com/add/amarayong27?share_id=0VSaYNe1g3U&locale=fr-FR" class="link-icon-button" target="_blank" title="Snapchat">
-                <i class="fab fa-snapchat"></i>
-            </a>
-            <a href="https://x.com/AmaraD52591?t=HnUOvL9T3mb_LWG9JaxKXw&s=08" class="link-icon-button" target="_blank" title="Twitter">
-                <i class="fab fa-twitter"></i>
-            </a>
-        </div>
-        
-        <div class="footer">
-            <div class="footer-divider"></div>
-            <p class="footer-text">© 2025 <strong>Mr Diomandé</strong> • All Rights Reserved</p>
-            <p class="footer-text" style="margin-top: 8px; opacity: 0.75;">Influenceur • Développeur Web • Designer • Ingénieur</p>
-        </div>
     </div>
+    
+    <footer class="footer">
+        <p class="typing-effect">"Créativité sans frontières"<span class="cursor">|</span></p>
+        <p style="margin-top: 15px; opacity: 0.75;">© 2023-2025 Mr Diomandé. Tous droits réservés.</p>
+    </footer>
+    
+    <script>
+        // Theme selector
+        const themeBtns = document.querySelectorAll('.theme-btn');
+        themeBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                themeBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+        
+        // Animated stats counter
+        const statNumbers = document.querySelectorAll('.stat-number');
+        statNumbers.forEach(stat => {
+            const target = parseInt(stat.textContent) || 0;
+            let current = 0;
+            const increment = target / 30;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    stat.textContent = stat.textContent;
+                    clearInterval(timer);
+                } else {
+                    stat.textContent = Math.floor(current) + (target > 1000 ? 'K' : '');
+                }
+            }, 50);
+        });
+    </script>
 </body>
 </html>
