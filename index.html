@@ -6,7 +6,7 @@
     <title>Mr Diomandé - Link In Bio</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Orbitron:wght@400;700;900&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -15,16 +15,17 @@
         }
         
         body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d1b69 20%, #DC143C 40%, #6B4C8A 60%, #FFD700 80%, #000000 100%);
+            font-family: 'Space Mono', 'Courier Prime', monospace;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a0033 25%, #001a4d 50%, #0d0221 75%, #0a0e27 100%);
             background-size: 400% 400%;
-            animation: gradientShift 25s ease infinite;
+            animation: gradientShift 30s ease infinite;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             padding: 0;
             overflow-x: hidden;
             position: relative;
+            color: #00d9ff;
         }
         
         @keyframes gradientShift {
@@ -35,16 +36,21 @@
         
         /* Motivation banner */
         .motivation-banner {
-            background: linear-gradient(90deg, #ff6b6b, #ff8e53, #ff6b6b);
-            color: white;
+            background: linear-gradient(90deg, #ff006e, #ff00ff, #0099ff);
+            color: #00d9ff;
             padding: 15px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.5), inset 0 0 20px rgba(0, 217, 255, 0.1);
             position: relative;
             overflow: hidden;
             z-index: 100;
+            border-top: 2px solid #00d9ff;
+            border-bottom: 2px solid #ff006e;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
         
         .motivation-banner::before {
@@ -117,12 +123,13 @@
         
         /* Premium Glass morphism */
         .glass {
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-            border-radius: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+            background: rgba(0, 25, 77, 0.3);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 0;
+            border: 2px solid #00d9ff;
+            box-shadow: 0 0 30px rgba(0, 217, 255, 0.3), inset 0 0 30px rgba(255, 0, 255, 0.05);
+            position: relative;
         }
         
         .profile-section {
@@ -163,21 +170,25 @@
         }
         
         .name {
-            font-size: 38px;
-            font-weight: 700;
-            color: white;
+            font-size: 48px;
+            font-weight: 900;
+            color: #00d9ff;
             margin-bottom: 12px;
-            letter-spacing: -1px;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            letter-spacing: 3px;
+            text-shadow: 0 0 20px rgba(0, 217, 255, 0.8), 0 0 40px rgba(255, 0, 255, 0.4);
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
         }
         
         .bio {
-            font-size: 15px;
-            color: rgba(255, 255, 255, 0.92);
+            font-size: 14px;
+            color: #0099ff;
             margin-bottom: 5px;
             line-height: 1.7;
-            font-weight: 300;
-            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            font-weight: 400;
+            text-shadow: 0 0 10px rgba(0, 153, 255, 0.5);
+            font-family: 'Space Mono', monospace;
+            letter-spacing: 1px;
         }
         
         .stats {
@@ -188,33 +199,33 @@
         }
         
         .stat-card {
-            background: rgba(255, 255, 255, 0.06);
-            backdrop-filter: blur(20px);
+            background: rgba(0, 25, 77, 0.4);
+            backdrop-filter: blur(15px);
             padding: 22px 15px;
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 0;
+            border: 2px solid #0099ff;
             text-align: center;
-            color: white;
+            color: #00d9ff;
             transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 20px rgba(0, 217, 255, 0.2);
         }
         
         .stat-card:hover {
             transform: translateY(-8px);
-            background: rgba(255, 255, 255, 0.12);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+            background: rgba(0, 217, 255, 0.1);
+            box-shadow: 0 0 30px rgba(0, 217, 255, 0.6), inset 0 0 20px rgba(255, 0, 255, 0.1);
+            border-color: #ff006e;
         }
         
         .stat-number {
             font-size: 32px;
-            font-weight: 700;
+            font-weight: 900;
             display: block;
             margin-bottom: 8px;
-            background: linear-gradient(135deg, #ffffff, rgba(255, 255, 255, 0.8));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #00d9ff;
+            font-family: 'Orbitron', sans-serif;
+            text-shadow: 0 0 15px rgba(0, 217, 255, 0.8);
         }
         
         .stat-label {
@@ -235,24 +246,24 @@
         .link-icon-button {
             width: 70px;
             height: 70px;
-            border-radius: 50%;
+            border-radius: 0;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 28px;
-            color: white;
+            color: #00d9ff;
             text-decoration: none;
             transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
             cursor: pointer;
-            border: 2px solid rgba(255, 255, 255, 0.25);
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(20px);
+            border: 2px solid #00d9ff;
+            background: rgba(0, 25, 77, 0.4);
+            backdrop-filter: blur(15px);
             position: relative;
             overflow: hidden;
             -webkit-tap-highlight-color: transparent;
             -webkit-user-select: none;
             user-select: none;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 15px rgba(0, 217, 255, 0.3);
         }
         
         .link-icon-button::before {
@@ -275,9 +286,9 @@
         
         .link-icon-button:hover {
             transform: translateY(-15px) scale(1.18);
-            background: rgba(255, 255, 255, 0.18);
-            border-color: rgba(255, 255, 255, 0.5);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+            background: rgba(0, 217, 255, 0.15);
+            border-color: #ff006e;
+            box-shadow: 0 0 30px rgba(255, 0, 110, 0.8), inset 0 0 20px rgba(0, 217, 255, 0.2);
         }
         
         .link-icon-button i {
@@ -337,10 +348,14 @@
         }
         
         .portfolio h2 {
-            font-size: 32px;
-            color: white;
+            font-size: 36px;
+            color: #00d9ff;
             margin-bottom: 40px;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-shadow: 0 0 20px rgba(0, 217, 255, 0.8);
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 900;
         }
         
         .projects-grid {
@@ -351,18 +366,19 @@
         }
         
         .project-card {
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(20px);
-            border-radius: 15px;
+            background: rgba(0, 25, 77, 0.3);
+            backdrop-filter: blur(15px);
+            border-radius: 0;
             overflow: hidden;
             transition: all 0.4s ease;
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            border: 2px solid #0099ff;
+            box-shadow: 0 0 20px rgba(0, 153, 255, 0.2);
         }
         
         .project-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 0 30px rgba(0, 217, 255, 0.6), inset 0 0 20px rgba(255, 0, 255, 0.1);
+            border-color: #00d9ff;
         }
         
         .project-image {
@@ -417,10 +433,14 @@
         }
         
         .gallery-section h2 {
-            font-size: 32px;
-            color: white;
+            font-size: 36px;
+            color: #00d9ff;
             margin-bottom: 40px;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-shadow: 0 0 20px rgba(0, 217, 255, 0.8);
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 900;
         }
         
         .gallery-grid {
@@ -432,12 +452,18 @@
         .gallery-item {
             position: relative;
             overflow: hidden;
-            border-radius: 15px;
+            border-radius: 0;
             cursor: pointer;
             aspect-ratio: 1;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(0, 25, 77, 0.3);
+            border: 2px solid #0099ff;
             transition: all 0.4s ease;
+            box-shadow: 0 0 15px rgba(0, 153, 255, 0.2);
+        }
+        
+        .gallery-item:hover {
+            border-color: #00d9ff;
+            box-shadow: 0 0 30px rgba(0, 217, 255, 0.6);
         }
         
         .gallery-item img {
@@ -454,12 +480,15 @@
         .footer {
             text-align: center;
             padding: 40px 20px;
-            color: rgba(255, 255, 255, 0.75);
-            font-size: 13px;
+            color: #0099ff;
+            font-size: 12px;
             position: relative;
             z-index: 10;
-            background: rgba(0, 0, 0, 0.3);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.5);
+            border-top: 2px solid #00d9ff;
+            border-bottom: 2px solid #ff006e;
+            font-family: 'Space Mono', monospace;
+            letter-spacing: 1px;
         }
         
         .typing-effect {
