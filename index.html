@@ -709,11 +709,33 @@
     </div>
     
     <footer class="footer">
-        <p class="typing-effect">"Créativité sans frontières"<span class="cursor">|</span></p>
+        <p class="typing-effect" id="typing-text"></p>
         <p style="margin-top: 15px; opacity: 0.75;">© 2023-2025 Mr Diomandé. Tous droits réservés.</p>
     </footer>
     
     <script>
+        // Typing effect
+        const typingText = '"Créativité sans frontières"';
+        const typingElement = document.getElementById('typing-text');
+        let index = 0;
+        
+        function typeWriter() {
+            if (index < typingText.length) {
+                typingElement.textContent += typingText.charAt(index);
+                index++;
+                setTimeout(typeWriter, 80);
+            } else {
+                // Add cursor after typing is done
+                const cursor = document.createElement('span');
+                cursor.className = 'cursor';
+                cursor.textContent = '|';
+                typingElement.appendChild(cursor);
+            }
+        }
+        
+        // Start typing effect when page loads
+        window.addEventListener('load', typeWriter);
+        
         // Animated stats counter
         const statNumbers = document.querySelectorAll('.stat-number');
         statNumbers.forEach(stat => {
