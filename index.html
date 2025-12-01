@@ -16,18 +16,19 @@
         
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #00f2fe 100%);
             background-size: 400% 400%;
-            animation: gradient 15s ease infinite;
+            animation: gradientShift 20s ease infinite;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 20px;
             overflow: hidden;
+            position: relative;
         }
         
-        @keyframes gradient {
+        @keyframes gradientShift {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
@@ -53,187 +54,151 @@
             left: 0;
         }
         
-        .geometric-shape {
-            opacity: 0.15;
-            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.1));
-        }
-        
-        .line {
-            stroke: rgba(255, 255, 255, 0.3);
-            stroke-width: 2;
-            animation: drawLine 8s ease-in-out infinite;
-        }
-        
-        .triangle {
-            fill: none;
-            stroke: rgba(255, 255, 255, 0.2);
-            stroke-width: 2;
-            animation: rotateTriangle 12s linear infinite;
-        }
-        
-        .circle-outline {
-            fill: none;
-            stroke: rgba(255, 255, 255, 0.2);
-            stroke-width: 2;
-            animation: rotateCircle 15s linear infinite;
-        }
-        
-        @keyframes drawLine {
-            0%, 100% { stroke-dashoffset: 1000; }
-            50% { stroke-dashoffset: 0; }
-        }
-        
-        @keyframes rotateTriangle {
-            0% { transform: rotate(0deg) translateX(0); }
-            50% { transform: rotate(180deg) translateX(20px); }
-            100% { transform: rotate(360deg) translateX(0); }
-        }
-        
-        @keyframes rotateCircle {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        .logo-svg {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 20px;
-            animation: logoPulse 3s ease-in-out infinite;
-        }
-        
-        @keyframes logoPulse {
-            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(255,255,255,0.3)); }
-            50% { transform: scale(1.1); filter: drop-shadow(0 0 20px rgba(255,255,255,0.8)); }
-        }
-        
         .container {
-            max-width: 500px;
+            max-width: 450px;
             width: 100%;
             z-index: 10;
             position: relative;
         }
         
-        /* Glass morphism effect */
+        /* Premium Glass morphism effect */
         .glass {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
         }
         
         .profile-section {
             text-align: center;
-            padding: 50px 30px 35px;
+            padding: 60px 40px 40px;
             position: relative;
         }
         
+        .logo-svg {
+            width: 90px;
+            height: 90px;
+            margin: 0 auto 30px;
+            animation: logoPulse 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+            filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.2));
+        }
+        
+        @keyframes logoPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+        }
+        
         .profile-pic {
-            width: 140px;
-            height: 140px;
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
-            margin: 0 auto 25px;
-            border: 5px solid rgba(255, 255, 255, 0.9);
+            margin: 0 auto 30px;
+            border: 4px solid rgba(255, 255, 255, 0.95);
             object-fit: cover;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            animation: profilePulse 3s ease-in-out infinite;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25), inset 0 0 30px rgba(255, 255, 255, 0.1);
+            animation: profileFloat 6s ease-in-out infinite;
             position: relative;
             z-index: 2;
         }
         
-        @keyframes profilePulse {
-            0%, 100% { 
-                transform: scale(1);
-                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            }
-            50% { 
-                transform: scale(1.05);
-                box-shadow: 0 20px 80px rgba(0, 0, 0, 0.5);
-            }
+        @keyframes profileFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
         }
         
         .name {
-            font-size: 32px;
+            font-size: 38px;
             font-weight: 700;
             color: white;
-            margin-bottom: 10px;
-            letter-spacing: -0.5px;
+            margin-bottom: 12px;
+            letter-spacing: -1px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
         
         .bio {
             font-size: 15px;
-            color: rgba(255, 255, 255, 0.95);
-            margin-bottom: 0;
-            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.92);
+            margin-bottom: 5px;
+            line-height: 1.7;
             font-weight: 300;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         }
         
         .stats {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 15px;
-            margin: 30px 0;
+            margin: 35px 0;
         }
         
         .stat-card {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            padding: 20px;
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(20px);
+            padding: 22px 15px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
             text-align: center;
             color: white;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
         
         .stat-card:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
         }
         
         .stat-number {
-            font-size: 28px;
+            font-size: 32px;
             font-weight: 700;
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #ffffff, rgba(255, 255, 255, 0.8));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
         .stat-label {
             font-size: 12px;
-            opacity: 0.9;
+            opacity: 0.85;
             font-weight: 500;
+            letter-spacing: 0.5px;
         }
         
         .links-section {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 24px;
-            padding: 45px 30px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            padding: 45px 40px;
             padding-top: 35px;
         }
         
         .link-icon-button {
-            width: 75px;
-            height: 75px;
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 34px;
+            font-size: 28px;
             color: white;
             text-decoration: none;
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
             cursor: pointer;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
             position: relative;
             overflow: hidden;
-            min-width: 75px;
             -webkit-tap-highlight-color: transparent;
             -webkit-user-select: none;
             user-select: none;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
         }
         
         .link-icon-button::before {
@@ -244,94 +209,127 @@
             width: 0;
             height: 0;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.15);
             transform: translate(-50%, -50%);
             transition: width 0.6s, height 0.6s;
         }
         
         .link-icon-button:hover::before {
-            width: 100px;
-            height: 100px;
+            width: 120px;
+            height: 120px;
         }
         
         .link-icon-button:hover {
-            transform: translateY(-12px) scale(1.15);
-            background: rgba(255, 255, 255, 0.25);
-            border-color: rgba(255, 255, 255, 0.6);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            transform: translateY(-15px) scale(1.18);
+            background: rgba(255, 255, 255, 0.18);
+            border-color: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
         }
         
         .link-icon-button i {
             position: relative;
             z-index: 2;
-            transition: transform 0.3s ease;
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
         
         .link-icon-button:hover i {
-            transform: rotate(10deg) scale(1.1);
+            transform: rotate(15deg) scale(1.15);
         }
         
         /* Instagram */
         .link-icon-button:nth-child(1) {
-            background: linear-gradient(135deg, rgba(233, 30, 99, 0.3) 0%, rgba(156, 39, 176, 0.3) 100%);
+            background: linear-gradient(135deg, rgba(233, 30, 99, 0.2) 0%, rgba(156, 39, 176, 0.2) 100%);
         }
         
         .link-icon-button:nth-child(1):hover {
-            background: linear-gradient(135deg, rgba(233, 30, 99, 0.6) 0%, rgba(156, 39, 176, 0.6) 100%);
+            background: linear-gradient(135deg, rgba(233, 30, 99, 0.4) 0%, rgba(156, 39, 176, 0.4) 100%);
         }
         
         /* Twitter */
         .link-icon-button:nth-child(2) {
-            background: linear-gradient(135deg, rgba(29, 161, 242, 0.3) 0%, rgba(15, 127, 208, 0.3) 100%);
+            background: linear-gradient(135deg, rgba(29, 161, 242, 0.2) 0%, rgba(15, 127, 208, 0.2) 100%);
         }
         
         .link-icon-button:nth-child(2):hover {
-            background: linear-gradient(135deg, rgba(29, 161, 242, 0.6) 0%, rgba(15, 127, 208, 0.6) 100%);
+            background: linear-gradient(135deg, rgba(29, 161, 242, 0.4) 0%, rgba(15, 127, 208, 0.4) 100%);
         }
         
         /* LinkedIn */
         .link-icon-button:nth-child(3) {
-            background: linear-gradient(135deg, rgba(0, 119, 181, 0.3) 0%, rgba(0, 56, 95, 0.3) 100%);
+            background: linear-gradient(135deg, rgba(0, 119, 181, 0.2) 0%, rgba(0, 56, 95, 0.2) 100%);
         }
         
         .link-icon-button:nth-child(3):hover {
-            background: linear-gradient(135deg, rgba(0, 119, 181, 0.6) 0%, rgba(0, 56, 95, 0.6) 100%);
+            background: linear-gradient(135deg, rgba(0, 119, 181, 0.4) 0%, rgba(0, 56, 95, 0.4) 100%);
         }
         
         /* YouTube */
         .link-icon-button:nth-child(4) {
-            background: linear-gradient(135deg, rgba(255, 0, 0, 0.3) 0%, rgba(204, 0, 0, 0.3) 100%);
+            background: linear-gradient(135deg, rgba(255, 0, 0, 0.2) 0%, rgba(204, 0, 0, 0.2) 100%);
         }
         
         .link-icon-button:nth-child(4):hover {
-            background: linear-gradient(135deg, rgba(255, 0, 0, 0.6) 0%, rgba(204, 0, 0, 0.6) 100%);
+            background: linear-gradient(135deg, rgba(255, 0, 0, 0.4) 0%, rgba(204, 0, 0, 0.4) 100%);
         }
         
         /* TikTok */
         .link-icon-button:nth-child(5) {
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.3) 0%, rgba(37, 244, 238, 0.3) 100%);
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.2) 0%, rgba(37, 244, 238, 0.2) 100%);
         }
         
         .link-icon-button:nth-child(5):hover {
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(37, 244, 238, 0.6) 100%);
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(37, 244, 238, 0.4) 100%);
         }
         
         /* Discord */
         .link-icon-button:nth-child(6) {
-            background: linear-gradient(135deg, rgba(88, 101, 242, 0.3) 0%, rgba(63, 75, 159, 0.3) 100%);
+            background: linear-gradient(135deg, rgba(88, 101, 242, 0.2) 0%, rgba(63, 75, 159, 0.2) 100%);
         }
         
         .link-icon-button:nth-child(6):hover {
-            background: linear-gradient(135deg, rgba(88, 101, 242, 0.6) 0%, rgba(63, 75, 159, 0.6) 100%);
+            background: linear-gradient(135deg, rgba(88, 101, 242, 0.4) 0%, rgba(63, 75, 159, 0.4) 100%);
         }
         
         /* GitHub */
         .link-icon-button:nth-child(7) {
-            background: linear-gradient(135deg, rgba(51, 51, 51, 0.3) 0%, rgba(0, 0, 0, 0.3) 100%);
+            background: linear-gradient(135deg, rgba(51, 51, 51, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%);
         }
         
         .link-icon-button:nth-child(7):hover {
-            background: linear-gradient(135deg, rgba(51, 51, 51, 0.6) 0%, rgba(0, 0, 0, 0.6) 100%);
+            background: linear-gradient(135deg, rgba(51, 51, 51, 0.4) 0%, rgba(0, 0, 0, 0.4) 100%);
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 35px 20px;
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 13px;
+            margin-top: 25px;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .footer-divider {
+            width: 80px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+            margin: 25px auto;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+        }
+        
+        .footer-text {
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .footer-text strong {
+            color: white;
+            font-weight: 600;
+        }
+        
+        .footer:hover {
+            color: rgba(255, 255, 255, 0.95);
         }
         
         @media (max-width: 768px) {
@@ -341,17 +339,87 @@
             }
             
             .glass {
-                border-radius: 16px;
+                border-radius: 20px;
+            }
+            
+            .links-section {
+                grid-template-columns: repeat(4, 1fr);
             }
         }
         
         @media (max-width: 600px) {
             body {
-                padding: 10px;
+                padding: 15px;
             }
             
             .profile-section {
-                padding: 35px 20px 25px;
+                padding: 45px 30px 30px;
+            }
+            
+            .name {
+                font-size: 32px;
+                margin-bottom: 10px;
+            }
+            
+            .bio {
+                font-size: 14px;
+                line-height: 1.6;
+            }
+            
+            .profile-pic {
+                width: 130px;
+                height: 130px;
+                margin-bottom: 25px;
+                border: 4px solid rgba(255, 255, 255, 0.9);
+            }
+            
+            .logo-svg {
+                width: 80px;
+                height: 80px;
+                margin-bottom: 25px;
+            }
+            
+            .stats {
+                gap: 12px;
+                margin: 30px 0;
+            }
+            
+            .stat-card {
+                padding: 18px 12px;
+                border-radius: 14px;
+            }
+            
+            .stat-number {
+                font-size: 28px;
+            }
+            
+            .stat-label {
+                font-size: 11px;
+            }
+            
+            .links-section {
+                padding: 35px 25px;
+                gap: 14px;
+            }
+            
+            .link-icon-button {
+                width: 65px;
+                height: 65px;
+                font-size: 26px;
+            }
+            
+            .link-icon-button:hover {
+                transform: translateY(-12px) scale(1.15);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding: 12px;
+            }
+            
+            .profile-section {
+                padding: 40px 25px 25px;
             }
             
             .name {
@@ -360,45 +428,38 @@
             }
             
             .bio {
-                font-size: 14px;
-                line-height: 1.5;
+                font-size: 13px;
             }
             
             .profile-pic {
                 width: 120px;
                 height: 120px;
                 margin-bottom: 20px;
-                border: 4px solid rgba(255, 255, 255, 0.9);
             }
             
             .stats {
-                gap: 12px;
-                margin: 25px 0 0 0;
+                gap: 10px;
+                margin: 25px 0;
             }
             
             .stat-card {
-                padding: 16px 12px;
+                padding: 16px 10px;
                 border-radius: 12px;
             }
             
             .stat-number {
-                font-size: 24px;
-            }
-            
-            .stat-label {
-                font-size: 11px;
+                font-size: 26px;
             }
             
             .links-section {
-                padding: 30px 15px;
-                gap: 18px;
+                padding: 30px 20px;
+                gap: 12px;
             }
             
             .link-icon-button {
-                width: 68px;
-                height: 68px;
-                font-size: 30px;
-                border: 2px solid rgba(255, 255, 255, 0.4);
+                width: 62px;
+                height: 62px;
+                font-size: 24px;
             }
             
             .link-icon-button:hover {
@@ -406,73 +467,13 @@
             }
         }
         
-        @media (max-width: 480px) {
-            body {
-                padding: 8px;
-            }
-            
+        @media (max-width: 360px) {
             .profile-section {
-                padding: 30px 15px 20px;
+                padding: 35px 20px 20px;
             }
             
             .name {
                 font-size: 26px;
-                margin-bottom: 6px;
-            }
-            
-            .bio {
-                font-size: 13px;
-            }
-            
-            .profile-pic {
-                width: 110px;
-                height: 110px;
-                margin-bottom: 18px;
-                border: 4px solid rgba(255, 255, 255, 0.9);
-            }
-            
-            .stats {
-                gap: 10px;
-                margin: 22px 0 0 0;
-            }
-            
-            .stat-card {
-                padding: 14px 10px;
-                border-radius: 10px;
-            }
-            
-            .stat-number {
-                font-size: 22px;
-            }
-            
-            .stat-label {
-                font-size: 10px;
-            }
-            
-            .links-section {
-                padding: 25px 12px;
-                gap: 16px;
-            }
-            
-            .link-icon-button {
-                width: 64px;
-                height: 64px;
-                font-size: 28px;
-                min-height: 64px;
-            }
-            
-            .link-icon-button:hover {
-                transform: translateY(-8px) scale(1.1);
-            }
-        }
-        
-        @media (max-width: 360px) {
-            .profile-section {
-                padding: 25px 12px 18px;
-            }
-            
-            .name {
-                font-size: 24px;
             }
             
             .bio {
@@ -480,56 +481,25 @@
             }
             
             .profile-pic {
-                width: 100px;
-                height: 100px;
+                width: 110px;
+                height: 110px;
             }
             
             .stats {
                 gap: 8px;
-                margin: 20px 0 0 0;
+                margin: 20px 0;
             }
             
             .links-section {
-                padding: 22px 10px;
-                gap: 14px;
+                padding: 25px 15px;
+                gap: 10px;
             }
             
             .link-icon-button {
-                width: 60px;
-                height: 60px;
-                font-size: 26px;
+                width: 58px;
+                height: 58px;
+                font-size: 22px;
             }
-        }
-        
-        .footer {
-            text-align: center;
-            padding: 30px 20px;
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 13px;
-            margin-top: 30px;
-            position: relative;
-            z-index: 10;
-        }
-        
-        .footer-divider {
-            width: 60px;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
-            margin: 20px auto;
-        }
-        
-        .footer-text {
-            font-weight: 300;
-            letter-spacing: 0.5px;
-        }
-        
-        .footer-text strong {
-            color: white;
-            font-weight: 600;
-        }
-        
-        .footer:hover {
-            color: rgba(255, 255, 255, 0.9);
         }
     </style>
 </head>
@@ -541,14 +511,14 @@
                     @keyframes flowLine { 0% { stroke-dashoffset: 200; } 100% { stroke-dashoffset: 0; } }
                     @keyframes rotateSlow { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
                     @keyframes rotateFast { 0% { transform: rotate(0deg); } 100% { transform: rotate(-360deg); } }
-                    @keyframes pulse { 0%, 100% { r: 80; opacity: 0.3; } 50% { r: 120; opacity: 0.1; } }
+                    @keyframes pulse { 0%, 100% { r: 80; opacity: 0.25; } 50% { r: 120; opacity: 0.08; } }
                     
-                    .geo-line { stroke: rgba(255,255,255,0.35); stroke-width: 3; animation: flowLine 6s linear infinite; stroke-dasharray: 200; }
-                    .geo-circle { fill: none; stroke: rgba(255,255,255,0.3); stroke-width: 2; }
-                    .geo-circle-1 { animation: rotateSlow 20s linear infinite; transform-origin: 600px 300px; }
-                    .geo-circle-2 { animation: rotateFast 15s linear infinite; transform-origin: 150px 600px; }
-                    .geo-circle-3 { animation: pulse 8s ease-in-out infinite; }
-                    .geo-polygon { fill: none; stroke: rgba(255,255,255,0.25); stroke-width: 2.5; }
+                    .geo-line { stroke: rgba(255,255,255,0.25); stroke-width: 2.5; animation: flowLine 7s linear infinite; stroke-dasharray: 200; }
+                    .geo-circle { fill: none; stroke: rgba(255,255,255,0.2); stroke-width: 2; }
+                    .geo-circle-1 { animation: rotateSlow 25s linear infinite; transform-origin: 600px 300px; }
+                    .geo-circle-2 { animation: rotateFast 18s linear infinite; transform-origin: 150px 600px; }
+                    .geo-circle-3 { animation: pulse 10s ease-in-out infinite; }
+                    .geo-polygon { fill: none; stroke: rgba(255,255,255,0.15); stroke-width: 2; }
                 </style>
             </defs>
             
@@ -569,42 +539,27 @@
             <polygon class="geo-polygon" points="150,1000 250,800 350,1000 250,1200"/>
             
             <!-- Triángulos -->
-            <polygon class="geo-polygon" points="600,100 700,300 500,300" opacity="0.4"/>
-            <polygon class="geo-polygon" points="1100,700 1200,900 1000,900" opacity="0.4"/>
-            
-            <!-- Puntos animados que se mueven -->
-            <circle cx="300" cy="200" r="4" fill="rgba(255,255,255,0.6)">
-                <animate attributeName="cy" values="200;400;200" dur="8s" repeatCount="indefinite"/>
-                <animate attributeName="opacity" values="0.3;0.8;0.3" dur="8s" repeatCount="indefinite"/>
-            </circle>
-            <circle cx="950" cy="500" r="4" fill="rgba(255,255,255,0.6)">
-                <animate attributeName="cx" values="950;1100;950" dur="10s" repeatCount="indefinite"/>
-                <animate attributeName="opacity" values="0.3;0.8;0.3" dur="10s" repeatCount="indefinite"/>
-            </circle>
-            <circle cx="600" cy="1400" r="4" fill="rgba(255,255,255,0.6)">
-                <animate attributeName="cx" values="600;700;600" dur="7s" repeatCount="indefinite"/>
-                <animate attributeName="opacity" values="0.3;0.8;0.3" dur="7s" repeatCount="indefinite"/>
-            </circle>
+            <polygon class="geo-polygon" points="600,100 700,300 500,300" opacity="0.3"/>
+            <polygon class="geo-polygon" points="1100,700 1200,900 1000,900" opacity="0.3"/>
         </svg>
     </div>
     
     <div class="container">
-        <svg class="logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-                <style>
-                    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-                    @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-5px); } }
-                    .svg-circle { animation: spin 8s linear infinite; }
-                    .svg-text { font-family: 'Poppins', sans-serif; font-size: 32px; font-weight: 700; fill: white; animation: float 3s ease-in-out infinite; text-anchor: middle; }
-                </style>
-            </defs>
-            <circle class="svg-circle" cx="50" cy="50" r="45" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2" stroke-dasharray="8,4"/>
-            <circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
-            <circle cx="50" cy="50" r="35" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
-            <text class="svg-text" x="50" y="60">D</text>
-        </svg>
-        
         <div class="glass profile-section">
+            <svg class="logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <style>
+                        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+                        .svg-circle { animation: spin 10s linear infinite; }
+                        .svg-text { font-family: 'Poppins', sans-serif; font-size: 32px; font-weight: 700; fill: white; text-anchor: middle; }
+                    </style>
+                </defs>
+                <circle class="svg-circle" cx="50" cy="50" r="45" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2" stroke-dasharray="8,4"/>
+                <circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"/>
+                <circle cx="50" cy="50" r="35" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+                <text class="svg-text" x="50" y="60">D</text>
+            </svg>
+            
             <img src="profil.jpg" alt="Profile" class="profile-pic">
             <h1 class="name">Mr Diomandé</h1>
             <p class="bio">Influenceur • Développeur Web • Designer • Ingénieur</p>
@@ -629,27 +584,21 @@
             <a href="https://instagram.com" class="link-icon-button" target="_blank" title="Instagram">
                 <i class="fab fa-instagram"></i>
             </a>
-            
             <a href="https://twitter.com" class="link-icon-button" target="_blank" title="Twitter">
                 <i class="fab fa-twitter"></i>
             </a>
-            
             <a href="https://linkedin.com/in/mrdiomande" class="link-icon-button" target="_blank" title="LinkedIn">
                 <i class="fab fa-linkedin"></i>
             </a>
-            
             <a href="https://youtube.com/@mrdiomande" class="link-icon-button" target="_blank" title="YouTube">
                 <i class="fab fa-youtube"></i>
             </a>
-            
             <a href="https://tiktok.com/@mrdiomande" class="link-icon-button" target="_blank" title="TikTok">
                 <i class="fab fa-tiktok"></i>
             </a>
-            
             <a href="https://discord.gg" class="link-icon-button" target="_blank" title="Discord">
                 <i class="fab fa-discord"></i>
             </a>
-            
             <a href="https://github.com/mrdiomande" class="link-icon-button" target="_blank" title="GitHub">
                 <i class="fab fa-github"></i>
             </a>
@@ -658,9 +607,8 @@
         <div class="footer">
             <div class="footer-divider"></div>
             <p class="footer-text">© 2025 <strong>Mr Diomandé</strong> • All Rights Reserved</p>
-            <p class="footer-text" style="margin-top: 8px; opacity: 0.6;">Influenceur • Développeur Web • Designer • Ingénieur</p>
+            <p class="footer-text" style="margin-top: 8px; opacity: 0.75;">Influenceur • Développeur Web • Designer • Ingénieur</p>
         </div>
     </div>
-    
 </body>
 </html>
