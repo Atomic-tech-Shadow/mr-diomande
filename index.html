@@ -862,38 +862,18 @@
             }, 50);
         });
         
-        // Matrix effect - colonnes alignées comme dans les vrais films
+        // Matrix effect - CSS ANIMATION PURE (pas de timers, juste du CSS)
         const matrixBg = document.getElementById('matrix-bg');
         const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
-        const columnWidth = 40; // Largeur entre chaque colonne
-        const columns = Math.ceil(window.innerWidth / columnWidth);
-        const activeChars = {};
         
-        // Créer des colonnes avec leurs timers
-        for (let col = 0; col < columns; col++) {
-            activeChars[col] = 0;
-            
-            // Chaque colonne tombe indépendamment
-            (function(columnIndex) {
-                setInterval(() => {
-                    const char = document.createElement('div');
-                    char.className = 'matrix-char';
-                    char.textContent = chars.charAt(Math.floor(Math.random() * chars.length));
-                    
-                    const x = columnIndex * columnWidth;
-                    const duration = 12 + Math.random() * 6;
-                    
-                    char.style.left = x + 'px';
-                    char.style.top = '-30px';
-                    char.style.animationDuration = duration + 's';
-                    char.style.animationDelay = '0s';
-                    
-                    matrixBg.appendChild(char);
-                    
-                    // Nettoyer après l'animation
-                    setTimeout(() => char.remove(), duration * 1000);
-                }, 800 + Math.random() * 400); // Intervalle entre chaque char dans la colonne
-            })(col);
+        // Créer 12 éléments FIXES
+        for (let i = 0; i < 12; i++) {
+            const char = document.createElement('div');
+            char.className = 'matrix-char';
+            char.textContent = chars.charAt(Math.floor(Math.random() * chars.length));
+            char.style.left = (i * 60) + 'px';
+            char.style.animationDelay = (i * 0.3) + 's';
+            matrixBg.appendChild(char);
         }
     </script>
 </body>
