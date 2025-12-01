@@ -507,40 +507,48 @@
     <div class="particles">
         <svg width="100%" height="100%" viewBox="0 0 1200 1600" preserveAspectRatio="xMidYMid slice">
             <defs>
+                <filter id="blur1">
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="3" />
+                </filter>
+                <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#FFD700;stop-opacity:0.3" />
+                    <stop offset="100%" style="stop-color:#DC143C;stop-opacity:0.2" />
+                </linearGradient>
+                <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#6B4C8A;stop-opacity:0.25" />
+                    <stop offset="100%" style="stop-color:#FFD700;stop-opacity:0.15" />
+                </linearGradient>
                 <style>
-                    @keyframes flowLine { 0% { stroke-dashoffset: 200; } 100% { stroke-dashoffset: 0; } }
-                    @keyframes rotateSlow { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-                    @keyframes rotateFast { 0% { transform: rotate(0deg); } 100% { transform: rotate(-360deg); } }
-                    @keyframes pulse { 0%, 100% { r: 80; opacity: 0.25; } 50% { r: 120; opacity: 0.08; } }
+                    @keyframes blobFloat1 { 0%, 100% { transform: translate(0, 0) scale(1); } 25% { transform: translate(50px, -80px) scale(1.1); } 50% { transform: translate(-30px, 100px) scale(0.95); } 75% { transform: translate(80px, 50px) scale(1.05); } }
+                    @keyframes blobFloat2 { 0%, 100% { transform: translate(0, 0) scale(1); } 25% { transform: translate(-60px, 100px) scale(1.05); } 50% { transform: translate(100px, -50px) scale(0.9); } 75% { transform: translate(-80px, -80px) scale(1.1); } }
+                    @keyframes blobFloat3 { 0%, 100% { transform: translate(0, 0) scale(1); } 25% { transform: translate(100px, 80px) scale(1.08); } 50% { transform: translate(-100px, -100px) scale(0.92); } 75% { transform: translate(50px, -50px) scale(1.02); } }
+                    @keyframes glitchFloat { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-40px) rotate(180deg); } }
                     
-                    .geo-line { stroke: rgba(255,255,255,0.25); stroke-width: 2.5; animation: flowLine 7s linear infinite; stroke-dasharray: 200; }
-                    .geo-circle { fill: none; stroke: rgba(255,255,255,0.2); stroke-width: 2; }
-                    .geo-circle-1 { animation: rotateSlow 25s linear infinite; transform-origin: 600px 300px; }
-                    .geo-circle-2 { animation: rotateFast 18s linear infinite; transform-origin: 150px 600px; }
-                    .geo-circle-3 { animation: pulse 10s ease-in-out infinite; }
-                    .geo-polygon { fill: none; stroke: rgba(255,255,255,0.15); stroke-width: 2; }
+                    .blob { filter: url(#blur1); mix-blend-mode: screen; opacity: 0.6; }
+                    .blob1 { animation: blobFloat1 12s ease-in-out infinite; }
+                    .blob2 { animation: blobFloat2 15s ease-in-out infinite; }
+                    .blob3 { animation: blobFloat3 18s ease-in-out infinite; }
+                    .glitch { animation: glitchFloat 8s ease-in-out infinite; }
                 </style>
             </defs>
             
-            <!-- Líneas diagonales animadas -->
-            <line class="geo-line" x1="50" y1="100" x2="500" y2="700"/>
-            <line class="geo-line" x1="200" y1="50" x2="1000" y2="1000"/>
-            <line class="geo-line" x1="1000" y1="100" x2="400" y2="900"/>
-            <line class="geo-line" x1="1100" y1="500" x2="100" y2="1200"/>
+            <!-- Organic fluid blobs with gradients -->
+            <ellipse class="blob blob1" cx="200" cy="300" rx="120" ry="150" fill="url(#grad1)" />
+            <ellipse class="blob blob2" cx="1000" cy="400" rx="140" ry="110" fill="url(#grad2)" />
+            <ellipse class="blob blob3" cx="600" cy="1200" rx="130" ry="140" fill="url(#grad1)" />
             
-            <!-- Círculos que rotan -->
-            <circle class="geo-circle geo-circle-1" cx="600" cy="300" r="150"/>
-            <circle class="geo-circle geo-circle-2" cx="150" cy="600" r="120"/>
-            <circle class="geo-circle geo-circle-3" cx="1050" cy="900" r="100"/>
+            <!-- Morphing geometric accent shapes -->
+            <path class="glitch" d="M 150 150 Q 100 100, 200 50 Q 250 100, 200 150 Q 100 200, 150 150" stroke="rgba(255,255,255,0.2)" stroke-width="2" fill="none" />
+            <path class="glitch" style="animation-delay: 2s" d="M 950 900 Q 900 850, 1000 800 Q 1050 850, 1000 900 Q 900 950, 950 900" stroke="rgba(255,255,255,0.15)" stroke-width="2" fill="none" />
             
-            <!-- Polígonos geométricos -->
-            <polygon class="geo-polygon" points="300,300 450,150 600,300 450,450"/>
-            <polygon class="geo-polygon" points="900,1200 1000,1000 1100,1200 1000,1400"/>
-            <polygon class="geo-polygon" points="150,1000 250,800 350,1000 250,1200"/>
-            
-            <!-- Triángulos -->
-            <polygon class="geo-polygon" points="600,100 700,300 500,300" opacity="0.3"/>
-            <polygon class="geo-polygon" points="1100,700 1200,900 1000,900" opacity="0.3"/>
+            <!-- Subtle grid/tech accent -->
+            <g opacity="0.08" stroke="rgba(255,255,255,0.3)" stroke-width="1">
+                <line x1="0" y1="400" x2="1200" y2="400" />
+                <line x1="0" y1="800" x2="1200" y2="800" />
+                <line x1="300" y1="0" x2="300" y2="1600" />
+                <line x1="600" y1="0" x2="600" y2="1600" />
+                <line x1="900" y1="0" x2="900" y2="1600" />
+            </g>
         </svg>
     </div>
     
