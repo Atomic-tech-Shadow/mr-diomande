@@ -862,39 +862,49 @@
             }, 50);
         });
         
-        // Matrix effect - falling code with optimization
+        // Matrix effect - optimized version ultra-légère
         const matrixBg = document.getElementById('matrix-bg');
-        const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン!@#$%^&*()_+-=[]{}|;:,.<>?/~`';
+        const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
         let charCount = 0;
-        const maxChars = 50; // Limiter pour éviter le lag
+        const maxChars = 30; // Maximum chars visibles en même temps
+        const pool = []; // Réutiliser les éléments
+        
+        // Créer un pool d'éléments
+        for (let i = 0; i < maxChars; i++) {
+            const char = document.createElement('div');
+            char.className = 'matrix-char';
+            char.style.display = 'none';
+            matrixBg.appendChild(char);
+            pool.push(char);
+        }
         
         function createMatrixChar() {
             if (charCount >= maxChars) return;
             
-            const char = document.createElement('div');
-            char.className = 'matrix-char';
-            char.textContent = chars.charAt(Math.floor(Math.random() * chars.length));
+            const char = pool[charCount];
+            if (!char) return;
             
+            char.textContent = chars.charAt(Math.floor(Math.random() * chars.length));
             const randomX = Math.random() * window.innerWidth;
-            const randomDelay = Math.random() * 2;
-            const randomDuration = 10 + Math.random() * 10;
+            const randomDuration = 8 + Math.random() * 8;
             
             char.style.left = randomX + 'px';
             char.style.top = '-30px';
-            char.style.animationDelay = randomDelay + 's';
             char.style.animationDuration = randomDuration + 's';
+            char.style.animationDelay = '0s';
+            char.style.display = 'block';
             
             charCount++;
-            matrixBg.appendChild(char);
             
+            // Réutiliser l'élément après l'animation
             setTimeout(() => {
-                char.remove();
+                char.style.display = 'none';
                 charCount--;
-            }, (randomDelay + randomDuration) * 1000);
+            }, randomDuration * 1000);
         }
         
-        // Generate matrix chars continuously - optimized pour éviter le scintillement
-        setInterval(createMatrixChar, 50);
+        // Générateur plus léger
+        setInterval(createMatrixChar, 80);
     </script>
 </body>
 </html>
