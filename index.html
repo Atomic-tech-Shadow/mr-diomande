@@ -33,53 +33,6 @@
             100% { background-position: 0% 50%; }
         }
         
-        /* Theme selector */
-        .theme-selector {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-            display: flex;
-            gap: 10px;
-            background: rgba(0,0,0,0.7);
-            padding: 10px;
-            border-radius: 30px;
-            backdrop-filter: blur(10px);
-        }
-        
-        .theme-btn {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            font-size: 18px;
-        }
-        
-        .theme-btn.light {
-            background: #f8f9fa;
-            color: #ffc107;
-        }
-        
-        .theme-btn.dark {
-            background: #343a40;
-            color: #adb5bd;
-        }
-        
-        .theme-btn.gold {
-            background: linear-gradient(45deg, #ffd700, #ffed4e, #daa520);
-            color: #000;
-        }
-        
-        .theme-btn.active {
-            transform: scale(1.1);
-            box-shadow: 0 0 10px currentColor;
-        }
-        
         /* Motivation banner */
         .motivation-banner {
             background: linear-gradient(90deg, #ff6b6b, #ff8e53, #ff6b6b);
@@ -652,18 +605,6 @@
         </svg>
     </div>
     
-    <div class="theme-selector">
-        <button class="theme-btn light active" data-theme="light" title="Light Mode">
-            <i class="fas fa-sun"></i>
-        </button>
-        <button class="theme-btn dark" data-theme="dark" title="Dark Mode">
-            <i class="fas fa-moon"></i>
-        </button>
-        <button class="theme-btn gold" data-theme="gold" title="Gold Mode">
-            <i class="fas fa-crown"></i>
-        </button>
-    </div>
-    
     <div class="motivation-banner">
         <div class="motivation-content">
             <p class="motivation-text">"Le sommeil c'est pour les héritiers, et le travail c'est pour les guerriers comme Diom"</p>
@@ -773,15 +714,6 @@
     </footer>
     
     <script>
-        // Theme selector
-        const themeBtns = document.querySelectorAll('.theme-btn');
-        themeBtns.forEach(btn => {
-            btn.addEventListener('click', function() {
-                themeBtns.forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-            });
-        });
-        
         // Animated stats counter
         const statNumbers = document.querySelectorAll('.stat-number');
         statNumbers.forEach(stat => {
