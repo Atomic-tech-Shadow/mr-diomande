@@ -253,27 +253,30 @@
             pointer-events: none;
             z-index: 1;
             overflow: hidden;
+            will-change: contents;
         }
         
         .matrix-char {
             position: absolute;
             font-family: 'Courier Prime', monospace;
             font-size: 24px;
-            color: #00d9ff;
+            color: #00FF00;
             font-weight: bold;
             letter-spacing: 3px;
             animation: matrixFall linear infinite;
-            text-shadow: 0 0 25px rgba(0, 217, 255, 1), 0 0 50px rgba(0, 217, 255, 0.8), 0 0 80px rgba(255, 0, 255, 0.4);
-            opacity: 0.85;
+            text-shadow: 0 0 25px rgba(0, 255, 0, 1), 0 0 50px rgba(0, 255, 0, 0.8), 0 0 80px rgba(0, 255, 0, 0.4);
+            opacity: 0.8;
+            will-change: transform;
+            backface-visibility: hidden;
         }
         
         @keyframes matrixFall {
             0% {
-                transform: translateY(-100%);
+                transform: translateY(-100%) translateZ(0);
                 opacity: 1;
             }
             100% {
-                transform: translateY(100vh);
+                transform: translateY(100vh) translateZ(0);
                 opacity: 0;
             }
         }
@@ -859,11 +862,15 @@
             }, 50);
         });
         
-        // Matrix effect - falling code
+        // Matrix effect - falling code with optimization
         const matrixBg = document.getElementById('matrix-bg');
         const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン!@#$%^&*()_+-=[]{}|;:,.<>?/~`';
+        let charCount = 0;
+        const maxChars = 50; // Limiter pour éviter le lag
         
         function createMatrixChar() {
+            if (charCount >= maxChars) return;
+            
             const char = document.createElement('div');
             char.className = 'matrix-char';
             char.textContent = chars.charAt(Math.floor(Math.random() * chars.length));
@@ -877,13 +884,17 @@
             char.style.animationDelay = randomDelay + 's';
             char.style.animationDuration = randomDuration + 's';
             
+            charCount++;
             matrixBg.appendChild(char);
             
-            setTimeout(() => char.remove(), (randomDelay + randomDuration) * 1000);
+            setTimeout(() => {
+                char.remove();
+                charCount--;
+            }, (randomDelay + randomDuration) * 1000);
         }
         
-        // Generate matrix chars continuously - DENSE MATRIX RAIN
-        setInterval(createMatrixChar, 30);
+        // Generate matrix chars continuously - optimized pour éviter le scintillement
+        setInterval(createMatrixChar, 50);
     </script>
 </body>
 </html>
