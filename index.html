@@ -610,6 +610,7 @@
             
             // Initialiser le sélecteur de thème
             initThemeSelector();
+        });
 
         // Fonction pour démarrer le changement de messages
         function startMotivationMessages() {
@@ -876,7 +877,7 @@
                 el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
                 observer.observe(el);
             });
-        });
+        }); // Fermer le DOMContentLoaded après toutes les fonctions
     </script>
 </body>
 </html>
