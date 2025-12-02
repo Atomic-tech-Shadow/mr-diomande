@@ -511,8 +511,12 @@
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
+        // Base de données de messages motivationnels
         const motivationMessages = [
+            // Votre citation personnelle
             "Le sommeil c'est pour les héritiers, et le travail c'est pour les guerriers comme Diom",
+            
+            // Succès (40%)
             "Le succès c'est tomber 7 fois et se relever 8 - Proverbe japonais",
             "La seule limite à votre impact est votre imagination et votre engagement - Tony Robbins",
             "Le succès n'est pas final, l'échec n'est pas fatal - Winston Churchill",
@@ -522,64 +526,266 @@
             "La réussite est un mauvais professeur - Bill Gates",
             "Le succès n'est pas la clé du bonheur. Le bonheur est la clé du succès - Albert Schweitzer",
             "La discipline est le pont entre les objectifs et leur réalisation - Jim Rohn",
+            "Le succès, c'est obtenir ce que vous voulez. Le bonheur, c'est apprécier ce que vous obtenez - Dale Carnegie",
+            
+            // Créativité (30%)
             "La créativité, c'est l'intelligence qui s'amuse - Albert Einstein",
             "Ne craignez pas la perfection, vous ne l'atteindrez jamais - Salvador Dali",
             "La créativité ne consiste pas à attendre l'inspiration, mais à la poursuivre avec une massue - Jack London",
+            "La créativité, c'est inventer, expérimenter, grandir, prendre des risques - George Lois",
+            "La créativité, c'est voir ce que tout le monde a vu et penser ce que personne n'a pensé - Albert Szent-Györgyi",
+            "La créativité nécessite le courage de se défaire de ses certitudes - Erich Fromm",
+  "La créativité nécessite le courage de se défaire de ses certitudes - Erich Fromm",
+           "L'imagination est le début de la création - George Bernard Shaw",
+            "La créativité, c'est l'intelligence qui s'amuse - Albert Einstein",
+            "La créativité, c'est permettre de faire des erreurs. L'art, c'est savoir lesquelles garder - Scott Adams",
+            "La créativité, c'est la capacité d'introduire de l'ordre dans le désordre de la nature - Erich Fromm",
+            
+            // Confiance en soi (20%)
             "Crois en toi et tout deviendra possible - Inconnu",
-            "La confiance en soi est le premier secret du succès - Ralph Waldo Emerson"
+            "La confiance en soi est le premier secret du succès - Ralph Waldo Emerson",
+            "La confiance en soi est le meilleur costume que vous puissiez porter - Inconnu",
+            "La confiance vient non pas de toujours avoir raison, mais de ne pas craindre d'avoir tort - Peter T. McIntyre",
+            "Croire en soi est le premier pas vers le succès - Inconnu",
+            "La confiance en soi est la mémoire du succès - Inconnu",
+            "Si vous n'avez pas confiance en vous, vous êtes deux fois battu dans la course de la vie - Marcus Garvey",
+            "La confiance en soi est contagieuse. Donnez-la aux autres et elle vous reviendra - Inconnu",
+            "La confiance en soi est le fondement de tout les grands succès et de toutes les grandes réalisations - Inconnu",
+            "Ayez confiance en vous, sachez que vous pouvez le faire - Inconnu",
+            
+            // Sport/Musculation (10%)
+            "Le muscle est comme une relation, si vous ne l'entretenez pas, il disparaît - Inconnu",
+            "La douleur que vous ressentez aujourd'hui sera la force que vous ressentirez demain",
+            "Le corps atteint ce que l'esprit croit - Inconnu",
+            "La force ne vient pas de la capacité physique, elle vient d'une volonté indomptable - Mahatma Gandhi",
+            "Le succès en musculation est 90% nutrition et 10% entraînement - Inconnu",
+            "Le muscle ne se construit pas dans le confort - Inconnu",
+            "La discipline est la clé, pas la motivation - Inconnu",
+            "Plus vous suez à l'entraînement, moins vous saignez au combat - Inconnu",
+            "Votre corps peut supporter presque n'importe quoi, c'est votre esprit qu'il faut convaincre - Inconnu",
+            "Le seul mauvais entraînement est celui que vous n'avez pas fait - Inconnu",
+            
+            // 2% en anglais
+            "The only way to do great work is to love what you do - Steve Jobs",
+            "Success is not how high you have climbed, but how you make a positive difference - Roy Bennett",
+            "The future belongs to those who believe in the beauty of their dreams - Eleanor Roosevelt",
+            "Don't watch the clock; do what it does. Keep going - Sam Levenson",
+            "Believe you can and you're halfway there - Theodore Roosevelt",
+            "The only limit to our realization of tomorrow will be our doubts of today - Franklin D. Roosevelt",
+            "It does not matter how slowly you go as long as you do not stop - Confucius",
+            "Your time is limited, don't waste it living someone else's life - Steve Jobs",
+            "The way to get started is to quit talking and begin doing - Walt Disney",
+            "If you can dream it, you can do it - Walt Disney"
         ];
 
-        function getRandomMotivation() {
-            return motivationMessages[Math.floor(Math.random() * motivationMessages.length)];
+        // Variables globales
+        let currentMessageIndex = 0;
+        let motivationInterval;
+        let bannerClosed = false;
+
+        // Initialisation au chargement de la page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Démarrer le changement de messages
+            startMotivationMessages();
+            
+            // Initialiser les statistiques
+            initStats();
+            
+            // Initialiser le sélecteur de thème
+            initThemeSelector();
+            
+            // Vérifier si la bannière a été fermée précédemment
+            checkBannerState();
+        });
+
+        // Fonction pour démarrer le changement de messages
+        function startMotivationMessages() {
+            // Afficher le premier message
+            displayNextMessage();
+            
+            // Changer le message toutes les 5 secondes
+            motivationInterval = setInterval(displayNextMessage, 5000);
         }
 
-        function updateMotivation() {
-            const textElement = document.getElementById('motivation-text');
-            if (textElement) {
-                textElement.textContent = '"' + getRandomMotivation() + '"';
+        // Fonction pour afficher le message suivant
+        function displayNextMessage() {
+            if (bannerClosed) return;
+            
+            const motivationText = document.getElementById('motivation-text');
+            
+            // Effet de fondu
+            motivationText.style.opacity = '0';
+            
+            setTimeout(() => {
+                currentMessageIndex = (currentMessageIndex + 1) % motivationMessages.length;
+                motivationText.textContent = motivationMessages[currentMessageIndex];
+                motivationText.style.opacity = '1';
+            }, 500);
+        }
+
+        // Fonction pour fermer la bannière
+        function closeBanner() {
+            const motivationSection = document.getElementById('motivation-section');
+            motivationSection.style.display = 'none';
+            bannerClosed = true;
+            clearInterval(motivationInterval);
+            
+            // Sauvegarder l'état dans le localStorage
+            localStorage.setItem('bannerClosed', 'true');
+        }
+
+        // Vérifier l'état de la bannière
+        function checkBannerState() {
+            if (localStorage.getItem('bannerClosed') === 'true') {
+                closeBanner();
             }
         }
 
+        // Fonction pour partager le message
         function shareMotivation() {
-            const text = document.getElementById('motivation-text').textContent;
+            const currentMessage = motivationMessages[currentMessageIndex];
+            const shareText = `${currentMessage} - Mr Diomandé`;
+            
             if (navigator.share) {
                 navigator.share({
-                    title: 'Mr Diomandé',
-                    text: text,
+                    title: 'Message Motivationnel',
+                    text: shareText,
                     url: window.location.href
                 });
             } else {
-                alert('Message de motivation copié: ' + text);
+                // Fallback pour copier dans le presse-papier
+                navigator.clipboard.writeText(shareText).then(() => {
+                    alert('Message copié dans le presse-papier !');
+                });
             }
         }
 
+        // Fonction pour tweeter le message
         function tweetMotivation() {
-            const text = encodeURIComponent(document.getElementById('motivation-text').textContent);
-            window.open(`https://twitter.com/intent/tweet?text=${text}`, '_blank');
+            const currentMessage = motivationMessages[currentMessageIndex];
+            const tweetText = `${currentMessage} - Mr Diomandé`;
+            const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`;
+            window.open(twitterUrl, '_blank');
         }
 
-        function closeBanner() {
-            document.getElementById('motivation-section').style.display = 'none';
+        // Fonction pour initialiser les statistiques
+        function initStats() {
+            const statNumbers = document.querySelectorAll('.stat-number');
+            
+            statNumbers.forEach(stat => {
+                const target = parseInt(stat.getAttribute('data-target'));
+                const duration = 2000; // 2 secondes
+                const step = target / (duration / 16); // 60fps
+                let current = 0;
+                
+                const timer = setInterval(() => {
+                    current += step;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    stat.textContent = Math.floor(current);
+                }, 16);
+            });
         }
 
-        document.addEventListener('DOMContentLoaded', function() {
-            updateMotivation();
-            setInterval(updateMotivation, 30000);
-
+        // Fonction pour initialiser le sélecteur de thème
+        function initThemeSelector() {
             const themeButtons = document.querySelectorAll('.theme-btn');
-            themeButtons.forEach(button => {
-                button.addEventListener('click', function() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            
+            // Appliquer le thème sauvegardé
+            applyTheme(savedTheme);
+            
+            // Activer le bouton correspondant
+            themeButtons.forEach(btn => {
+                if (btn.getAttribute('data-theme') === savedTheme) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+                
+                // Ajouter l'événement de clic
+                btn.addEventListener('click', function() {
                     const theme = this.getAttribute('data-theme');
-                    document.body.setAttribute('data-theme', theme);
-                    localStorage.setItem('theme', theme);
-                    themeButtons.forEach(btn => btn.classList.remove('active'));
+                    applyTheme(theme);
+                    
+                    // Mettre à jour les boutons actifs
+                    themeButtons.forEach(b => b.classList.remove('active'));
                     this.classList.add('active');
+                    
+                    // Sauvegarder le thème
+                    localStorage.setItem('theme', theme);
                 });
             });
+        }
 
-            const savedTheme = localStorage.getItem('theme') || 'light';
-            document.body.setAttribute('data-theme', savedTheme);
+        // Fonction pour appliquer un thème
+        function applyTheme(theme) {
+            document.body.setAttribute('data-theme', theme);
+            
+            // Mettre à jour les couleurs des particules selon le thème
+            if (typeof particlesJS !== 'undefined') {
+                updateParticlesColor(theme);
+            }
+        }
+
+        // Fonction pour mettre à jour la couleur des particules
+        function updateParticlesColor(theme) {
+            let color;
+            
+            switch(theme) {
+                case 'dark':
+                    color = '#bb86fc';
+                    break;
+                case 'gold':
+                    color = '#ffd700';
+                    break;
+                default:
+                    color = '#6200ee';
+            }
+            
+            particlesJS('particles-js', {
+                particles: {
+                    number: { value: 80, density: { enable: true, value_area: 800 } },
+                    color: { value: color },
+                    shape: { type: "circle" },
+                    opacity: { value: 0.5, random: true },
+                    size: { value: 3, random: true },
+                    line_linked: {
+                        enable: true,
+                        distance: 150,
+                        color: color,
+                        opacity: 0.4,
+                        width: 1
+                    },
+                    move: {
+                        enable: true,
+                        speed: 2,
+                        direction: "none",
+                        random: true,
+                        straight: false,
+                        out_mode: "out",
+                        bounce: false
+                    }
+                },
+                interactivity: {
+                    detect_on: "canvas",
+                    events: {
+                        onhover: { enable: true, mode: "repulse" },
+                        onclick: { enable: true, mode: "push" }
+                    }
+                }
+            });
+        }
+
+        // Initialiser les particules
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof particlesJS !== 'undefined') {
+                updateParticlesColor('light');
+            }
         });
     </script>
+    <script src="yong.js" defer></script>
 </body>
 </html>
