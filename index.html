@@ -3,54 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mr Diomandé - Link In Bio</title>
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <!-- Chargement Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Orbitron:wght@400;700;900&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Police Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+    <title>Mr Diomandé - Influenceur, Développeur web, designer & Ingénieur</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        /* Styles pour les nouvelles fonctionnalités */
         
-        body {
-            font-family: 'Space Mono', 'Courier Prime', monospace;
-            background: linear-gradient(135deg, #0a0e27 0%, #1a0033 25%, #001a4d 50%, #0d0221 75%, #0a0e27 100%);
-            background-size: 400% 400%;
-            animation: gradientShift 30s ease infinite;
-            min-height: 100vh;
+        /* Sélecteur de thème */
+        .theme-selector {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
             display: flex;
-            flex-direction: column;
-            padding: 0;
-            overflow-x: hidden;
-            position: relative;
-            color: #00d9ff;
+            gap: 10px;
+            background: rgba(0,0,0,0.7);
+            padding: 10px;
+            border-radius: 30px;
+            backdrop-filter: blur(10px);
         }
         
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        .theme-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-size: 18px;
         }
         
-        /* Motivation banner */
+        .theme-btn.light {
+            background: #f8f9fa;
+            color: #ffc107;
+        }
+        
+        .theme-btn.dark {
+            background: #343a40;
+            color: #adb5bd;
+        }
+        
+        .theme-btn.gold {
+            background: linear-gradient(45deg, #ffd700, #ffed4e, #daa520);
+            color: #000;
+        }
+        
+        .theme-btn.active {
+            transform: scale(1.1);
+            box-shadow: 0 0 10px currentColor;
+        }
+        
+        /* Bannière de motivation */
+        .motivation-section {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 999;
+            animation: slideDown 0.5s ease-out;
+        }
+        
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+        
         .motivation-banner {
-            background: linear-gradient(90deg, #ff006e, #ff00ff, #0099ff);
-            color: #00d9ff;
+            background: linear-gradient(90deg, #ff6b6b, #ff8e53, #ff6b6b);
+            color: white;
             padding: 15px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 0 20px rgba(255, 0, 255, 0.5), inset 0 0 20px rgba(0, 217, 255, 0.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
             position: relative;
             overflow: hidden;
-            z-index: 100;
-            border-top: 2px solid #00d9ff;
-            border-bottom: 2px solid #ff006e;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
         }
         
         .motivation-banner::before {
@@ -74,8 +110,6 @@
             align-items: center;
             gap: 15px;
             flex-grow: 1;
-            position: relative;
-            z-index: 2;
         }
         
         .motivation-text {
@@ -86,357 +120,79 @@
             text-align: center;
         }
         
-        /* Animated geometric background */
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: 1;
-            pointer-events: none;
-        }
-        
-        svg {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            top: 0;
-            left: 0;
-        }
-        
-        .main-content {
-            flex: 1;
+        .motivation-actions {
             display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            position: relative;
-            z-index: 10;
+            gap: 10px;
         }
         
-        .container {
-            max-width: 900px;
-            width: 100%;
-        }
-        
-        /* Premium Glass morphism */
-        .glass {
-            background: rgba(0, 25, 77, 0.3);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-radius: 0;
-            border: 2px solid #00d9ff;
-            box-shadow: 0 0 30px rgba(0, 217, 255, 0.3), inset 0 0 30px rgba(255, 0, 255, 0.05);
-            position: relative;
-        }
-        
-        .profile-section {
-            text-align: center;
-            padding: 60px 40px 40px;
-            position: relative;
-        }
-        
-        .logo-svg {
-            width: 90px;
-            height: 90px;
-            margin: 0 auto 30px;
-            animation: logoPulse 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-            filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.2));
-        }
-        
-        @keyframes logoPulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.08); }
-        }
-        
-        .profile-pic {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            margin: 0 auto 30px;
-            border: 4px solid rgba(255, 255, 255, 0.95);
-            object-fit: cover;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25), inset 0 0 30px rgba(255, 255, 255, 0.1);
-            animation: profileFloat 6s ease-in-out infinite;
-            position: relative;
-            z-index: 2;
-        }
-        
-        @keyframes profileFloat {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-        }
-        
-        .name {
-            font-size: 48px;
-            font-weight: 900;
-            color: #00d9ff;
-            margin-bottom: 12px;
-            letter-spacing: 3px;
-            text-shadow: 0 0 20px rgba(0, 217, 255, 0.8), 0 0 40px rgba(255, 0, 255, 0.4);
-            font-family: 'Orbitron', sans-serif;
-            text-transform: uppercase;
-        }
-        
-        .bio {
+        .share-btn, .social-share {
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
             font-size: 14px;
-            color: #0099ff;
-            margin-bottom: 5px;
-            line-height: 1.7;
-            font-weight: 400;
-            text-shadow: 0 0 10px rgba(0, 153, 255, 0.5);
-            font-family: 'Space Mono', monospace;
-            letter-spacing: 1px;
-        }
-        
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-            margin: 35px 0;
-        }
-        
-        .stat-card {
-            background: rgba(0, 25, 77, 0.4);
-            backdrop-filter: blur(15px);
-            padding: 22px 15px;
-            border-radius: 0;
-            border: 2px solid #0099ff;
-            text-align: center;
-            color: #00d9ff;
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            cursor: pointer;
-            box-shadow: 0 0 20px rgba(0, 217, 255, 0.2);
-        }
-        
-        .stat-card:hover {
-            transform: translateY(-8px);
-            background: rgba(0, 217, 255, 0.1);
-            box-shadow: 0 0 30px rgba(0, 217, 255, 0.6), inset 0 0 20px rgba(255, 0, 255, 0.1);
-            border-color: #ff006e;
-        }
-        
-        .stat-number {
-            font-size: 32px;
-            font-weight: 900;
-            display: block;
-            margin-bottom: 8px;
-            color: #00d9ff;
-            font-family: 'Orbitron', sans-serif;
-            text-shadow: 0 0 15px rgba(0, 217, 255, 0.8);
-        }
-        
-        .stat-label {
-            font-size: 12px;
-            opacity: 0.85;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-        }
-        
-        .links-section {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 16px;
-            padding: 45px 40px;
-            padding-top: 35px;
-        }
-        
-        /* Matrix Effect */
-        .matrix-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-            overflow: hidden;
-            will-change: contents;
-        }
-        
-        .matrix-char {
-            position: absolute;
-            font-family: 'Courier Prime', monospace;
-            font-size: 24px;
-            color: #00FF00;
-            font-weight: bold;
-            letter-spacing: 3px;
-            animation: matrixFall linear infinite;
-            text-shadow: 0 0 25px rgba(0, 255, 0, 1), 0 0 50px rgba(0, 255, 0, 0.8), 0 0 80px rgba(0, 255, 0, 0.4);
-            opacity: 0.8;
-            will-change: transform;
-            backface-visibility: hidden;
-        }
-        
-        @keyframes matrixFall {
-            0% {
-                transform: translateY(-100%) translateZ(0);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(100vh) translateZ(0);
-                opacity: 0;
-            }
-        }
-        
-        .link-icon-button {
-            width: 70px;
-            height: 70px;
-            border-radius: 0;
             display: flex;
             align-items: center;
+            gap: 5px;
+        }
+        
+        .social-share {
+            width: 40px;
             justify-content: center;
-            font-size: 28px;
-            color: #00d9ff;
-            text-decoration: none;
-            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        .share-btn:hover, .social-share:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+        
+        .close-banner {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
             cursor: pointer;
-            border: 2px solid #00d9ff;
-            background: rgba(0, 25, 77, 0.4);
-            backdrop-filter: blur(15px);
-            position: relative;
-            overflow: hidden;
-            -webkit-tap-highlight-color: transparent;
-            -webkit-user-select: none;
-            user-select: none;
-            box-shadow: 0 0 15px rgba(0, 217, 255, 0.3);
+            margin-left: 15px;
+            transition: transform 0.3s ease;
         }
         
-        .link-icon-button::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.15);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
+        .close-banner:hover {
+            transform: scale(1.2);
         }
         
-        .link-icon-button:hover::before {
-            width: 120px;
-            height: 120px;
-        }
-        
-        .link-icon-button:hover {
-            transform: translateY(-15px) scale(1.18);
-            background: rgba(0, 217, 255, 0.15);
-            border-color: #ff006e;
-            box-shadow: 0 0 30px rgba(255, 0, 110, 0.8), inset 0 0 20px rgba(0, 217, 255, 0.2);
-        }
-        
-        .link-icon-button i {
-            position: relative;
-            z-index: 2;
-            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.4s ease;
-            font-size: 32px;
-            text-shadow: 0 0 20px currentColor;
-        }
-        
-        .link-icon-button:hover i {
-            transform: rotate(15deg) scale(1.15);
-            filter: drop-shadow(0 0 8px currentColor) brightness(1.2);
-        }
-        
-        /* Social colors */
-        .link-icon-button:nth-child(1) {
-            background: linear-gradient(135deg, rgba(34, 197, 94, 0.2) 0%, rgba(22, 163, 74, 0.2) 100%);
-        }
-        .link-icon-button:nth-child(1):hover {
-            background: linear-gradient(135deg, rgba(34, 197, 94, 0.4) 0%, rgba(22, 163, 74, 0.4) 100%);
-        }
-        
-        .link-icon-button:nth-child(2) {
-            background: linear-gradient(135deg, rgba(59, 89, 152, 0.2) 0%, rgba(24, 119, 242, 0.2) 100%);
-        }
-        .link-icon-button:nth-child(2):hover {
-            background: linear-gradient(135deg, rgba(59, 89, 152, 0.4) 0%, rgba(24, 119, 242, 0.4) 100%);
-        }
-        
-        .link-icon-button:nth-child(3) {
-            background: linear-gradient(135deg, rgba(233, 30, 99, 0.2) 0%, rgba(156, 39, 176, 0.2) 100%);
-        }
-        .link-icon-button:nth-child(3):hover {
-            background: linear-gradient(135deg, rgba(233, 30, 99, 0.4) 0%, rgba(156, 39, 176, 0.4) 100%);
-        }
-        
-        .link-icon-button:nth-child(4) {
-            background: linear-gradient(135deg, rgba(29, 161, 242, 0.2) 0%, rgba(15, 127, 208, 0.2) 100%);
-        }
-        .link-icon-button:nth-child(4):hover {
-            background: linear-gradient(135deg, rgba(29, 161, 242, 0.4) 0%, rgba(15, 127, 208, 0.4) 100%);
-        }
-        
-        .link-icon-button:nth-child(5) {
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.2) 0%, rgba(37, 244, 238, 0.2) 100%);
-        }
-        .link-icon-button:nth-child(5):hover {
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(37, 244, 238, 0.4) 100%);
-        }
-        
-        .link-icon-button:nth-child(6) {
-            background: linear-gradient(135deg, rgba(0, 136, 204, 0.2) 0%, rgba(0, 174, 239, 0.2) 100%);
-        }
-        .link-icon-button:nth-child(6):hover {
-            background: linear-gradient(135deg, rgba(0, 136, 204, 0.4) 0%, rgba(0, 174, 239, 0.4) 100%);
-        }
-        
-        .link-icon-button:nth-child(7) {
-            background: linear-gradient(135deg, rgba(255, 0, 0, 0.2) 0%, rgba(204, 0, 0, 0.2) 100%);
-        }
-        .link-icon-button:nth-child(7):hover {
-            background: linear-gradient(135deg, rgba(255, 0, 0, 0.4) 0%, rgba(204, 0, 0, 0.4) 100%);
-        }
-        
+        /* Section Portfolio */
         .portfolio {
             padding: 60px 20px;
             text-align: center;
-            position: relative;
-            z-index: 10;
-        }
-        
-        .portfolio h2 {
-            font-size: 36px;
-            color: #00d9ff;
-            margin-bottom: 40px;
-            text-shadow: 0 0 20px rgba(0, 217, 255, 0.8);
-            font-family: 'Orbitron', sans-serif;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 900;
         }
         
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin-bottom: 60px;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
         }
         
         .project-card {
-            background: rgba(0, 25, 77, 0.3);
-            backdrop-filter: blur(15px);
-            border-radius: 0;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
             overflow: hidden;
-            transition: all 0.4s ease;
-            border: 2px solid #0099ff;
-            box-shadow: 0 0 20px rgba(0, 153, 255, 0.2);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
         }
         
         .project-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 0 30px rgba(0, 217, 255, 0.6), inset 0 0 20px rgba(255, 0, 255, 0.1);
-            border-color: #00d9ff;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
         }
         
         .project-image {
-            height: 180px;
+            height: 200px;
             overflow: hidden;
-            background: rgba(0, 0, 0, 0.2);
         }
         
         .project-image img {
@@ -451,430 +207,379 @@
         }
         
         .project-info {
-            padding: 25px;
-            color: white;
+            padding: 20px;
         }
         
         .project-info h3 {
             margin: 0 0 10px;
             font-size: 20px;
-            font-weight: 600;
         }
         
         .project-info p {
             margin: 0 0 15px;
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 14px;
+            color: rgba(255,255,255,0.7);
         }
         
         .project-status {
             display: inline-block;
-            padding: 6px 16px;
-            background: linear-gradient(135deg, #4CAF50, #45a049);
+            padding: 5px 15px;
+            background: #4CAF50;
             color: white;
             border-radius: 20px;
             font-size: 12px;
-            font-weight: 600;
+            font-weight: bold;
         }
         
-        .gallery-section {
+        /* Section Statistiques */
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
             padding: 60px 20px;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
             text-align: center;
-            position: relative;
-            z-index: 10;
+            padding: 20px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            min-width: 150px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: transform 0.3s ease;
         }
         
-        .gallery-section h2 {
-            font-size: 36px;
-            color: #00d9ff;
-            margin-bottom: 40px;
-            text-shadow: 0 0 20px rgba(0, 217, 255, 0.8);
-            font-family: 'Orbitron', sans-serif;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 900;
+        .stat-item:hover {
+            transform: translateY(-5px);
         }
         
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+        .stat-number {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #ff6b6b, #ff8e53);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
         
-        .gallery-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 0;
-            cursor: pointer;
-            aspect-ratio: 1;
-            background: rgba(0, 25, 77, 0.3);
-            border: 2px solid #0099ff;
-            transition: all 0.4s ease;
-            box-shadow: 0 0 15px rgba(0, 153, 255, 0.2);
-        }
-        
-        .gallery-item:hover {
-            border-color: #00d9ff;
-            box-shadow: 0 0 30px rgba(0, 217, 255, 0.6);
-        }
-        
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        
-        .gallery-item:hover img {
-            transform: scale(1.15);
-        }
-        
-        .footer {
-            text-align: center;
-            padding: 40px 20px;
-            color: #0099ff;
-            font-size: 12px;
-            position: relative;
-            z-index: 10;
-            background: rgba(0, 0, 0, 0.5);
-            border-top: 2px solid #00d9ff;
-            border-bottom: 2px solid #ff006e;
-            font-family: 'Space Mono', monospace;
-            letter-spacing: 1px;
-        }
-        
-        .typing-effect {
-            font-weight: 600;
+        .stat-label {
             font-size: 16px;
+            color: rgba(255,255,255,0.7);
         }
         
-        .cursor {
-            animation: blink 1s infinite;
+        /* Styles pour les thèmes */
+        body[data-theme="dark"] {
+            --bg-color: #121212;
+            --text-color: #ffffff;
+            --accent-color: #bb86fc;
+            --secondary-color: #03dac6;
         }
         
-        @keyframes blink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0; }
+        body[data-theme="light"] {
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --accent-color: #6200ee;
+            --secondary-color: #018786;
         }
         
+        body[data-theme="gold"] {
+            --bg-color: #1a1a1a;
+            --text-color: #ffd700;
+            --accent-color: #ffd700;
+            --secondary-color: #daa520;
+        }
+        
+        /* Responsive */
         @media (max-width: 768px) {
-            .profile-section {
-                padding: 45px 30px 30px;
+            .motivation-content {
+                flex-direction: column;
+                gap: 10px;
             }
             
-            .links-section {
-                grid-template-columns: repeat(4, 1fr);
+            .motivation-actions {
+                width: 100%;
+                justify-content: center;
             }
             
-            .motivation-text {
-                font-size: 14px;
-            }
-        }
-        
-        @media (max-width: 600px) {
-            .profile-section {
-                padding: 40px 25px 25px;
-            }
-            
-            .name {
-                font-size: 32px;
-            }
-            
-            .links-section {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 12px;
-                padding: 30px 25px;
-            }
-            
-            .link-icon-button {
-                width: 65px;
-                height: 65px;
-                font-size: 26px;
-            }
-            
-            .portfolio {
-                padding: 40px 15px;
-            }
-            
-            .projects-grid {
-                grid-template-columns: 1fr;
+            .stats {
                 gap: 20px;
             }
             
-            .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 15px;
+            .stat-item {
+                min-width: 120px;
             }
-        }
-        
-        @media (max-width: 480px) {
+            
             .theme-selector {
                 top: 10px;
                 right: 10px;
-            }
-            
-            .profile-section {
-                padding: 35px 20px 20px;
-            }
-            
-            .name {
-                font-size: 28px;
-            }
-            
-            .bio {
-                font-size: 13px;
-            }
-            
-            .links-section {
-                grid-template-columns: repeat(4, 1fr);
-                padding: 25px 15px;
-            }
-            
-            .link-icon-button {
-                width: 60px;
-                height: 60px;
-                font-size: 24px;
-            }
-            
-            .stat-card {
-                padding: 16px 10px;
-            }
-            
-            .stat-number {
-                font-size: 26px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="matrix-bg" id="matrix-bg"></div>
+    <!-- Fond animé -->
+    <div class="particles" id="particles-js"></div>
     
-    <div class="particles">
-        <svg width="100%" height="100%" viewBox="0 0 1200 1600" preserveAspectRatio="xMidYMid slice">
-            <defs>
-                <filter id="blur1">
-                    <feGaussianBlur in="SourceGraphic" stdDeviation="3" />
-                </filter>
-                <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" style="stop-color:#FFD700;stop-opacity:0.3" />
-                    <stop offset="100%" style="stop-color:#DC143C;stop-opacity:0.2" />
-                </linearGradient>
-                <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" style="stop-color:#6B4C8A;stop-opacity:0.25" />
-                    <stop offset="100%" style="stop-color:#FFD700;stop-opacity:0.15" />
-                </linearGradient>
-                <style>
-                    @keyframes blobFloat1 { 0%, 100% { transform: translate(0, 0) scale(1); } 25% { transform: translate(50px, -80px) scale(1.1); } 50% { transform: translate(-30px, 100px) scale(0.95); } 75% { transform: translate(80px, 50px) scale(1.05); } }
-                    @keyframes blobFloat2 { 0%, 100% { transform: translate(0, 0) scale(1); } 25% { transform: translate(-60px, 100px) scale(1.05); } 50% { transform: translate(100px, -50px) scale(0.9); } 75% { transform: translate(-80px, -80px) scale(1.1); } }
-                    @keyframes blobFloat3 { 0%, 100% { transform: translate(0, 0) scale(1); } 25% { transform: translate(100px, 80px) scale(1.08); } 50% { transform: translate(-100px, -100px) scale(0.92); } 75% { transform: translate(50px, -50px) scale(1.02); } }
-                    @keyframes glitchFloat { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-40px) rotate(180deg); } }
-                    
-                    .blob { filter: url(#blur1); mix-blend-mode: screen; opacity: 0.6; }
-                    .blob1 { animation: blobFloat1 12s ease-in-out infinite; }
-                    .blob2 { animation: blobFloat2 15s ease-in-out infinite; }
-                    .blob3 { animation: blobFloat3 18s ease-in-out infinite; }
-                    .glitch { animation: glitchFloat 8s ease-in-out infinite; }
-                </style>
-            </defs>
-            <ellipse class="blob blob1" cx="200" cy="300" rx="120" ry="150" fill="url(#grad1)" />
-            <ellipse class="blob blob2" cx="1000" cy="400" rx="140" ry="110" fill="url(#grad2)" />
-            <ellipse class="blob blob3" cx="600" cy="1200" rx="130" ry="140" fill="url(#grad1)" />
-            <path class="glitch" d="M 150 150 Q 100 100, 200 50 Q 250 100, 200 150 Q 100 200, 150 150" stroke="rgba(255,255,255,0.2)" stroke-width="2" fill="none" />
-            <path class="glitch" style="animation-delay: 2s" d="M 950 900 Q 900 850, 1000 800 Q 1050 850, 1000 900 Q 900 950, 950 900" stroke="rgba(255,255,255,0.15)" stroke-width="2" fill="none" />
-            <g opacity="0.08" stroke="rgba(255,255,255,0.3)" stroke-width="1">
-                <line x1="0" y1="400" x2="1200" y2="400" />
-                <line x1="0" y1="800" x2="1200" y2="800" />
-                <line x1="300" y1="0" x2="300" y2="1600" />
-                <line x1="600" y1="0" x2="600" y2="1600" />
-                <line x1="900" y1="0" x2="900" y2="1600" />
-            </g>
-        </svg>
+    <!-- Sélecteur de thème -->
+    <div class="theme-selector">
+        <button class="theme-btn light active" data-theme="light">
+            <i class="fas fa-sun"></i>
+        </button>
+        <button class="theme-btn dark" data-theme="dark">
+            <i class="fas fa-moon"></i>
+        </button>
+        <button class="theme-btn gold" data-theme="gold">
+            <i class="fas fa-crown"></i>
+        </button>
     </div>
     
-    <div class="motivation-banner">
-        <div class="motivation-content">
-            <p class="motivation-text">"Le sommeil c'est pour les héritiers, et le travail c'est pour les guerriers comme Diom"</p>
+    <!-- Bannière de motivation -->
+    <section class="motivation-section" id="motivation-section">
+        <div class="motivation-banner">
+            <div class="motivation-content">
+                <p class="motivation-text" id="motivation-text">"Le sommeil c'est pour les héritiers, et le travail c'est pour les guerriers comme Diom"</p>
+                <div class="motivation-actions">
+                    <button class="share-btn" onclick="shareMotivation()">
+                        <i class="fas fa-share"></i> Partager
+                    </button>
+                    <button class="social-share" onclick="tweetMotivation()">
+                        <i class="fab fa-x-twitter"></i>
+                    </button>
+                </div>
+            </div>
+            <button class="close-banner" onclick="closeBanner()">×</button>
         </div>
-    </div>
+    </section>
     
-    <div class="main-content">
-        <div class="container">
-            <div class="glass profile-section">
-                <img src="profil.jpg" alt="Profile" class="profile-pic">
-                <h1 class="name">Mr Diomandé</h1>
-                <p class="bio">Influenceur • Développeur Web • Designer • Ingénieur</p>
-                
-                <div class="stats">
-                    <div class="stat-card">
-                        <span class="stat-number">12.5K</span>
-                        <span class="stat-label">Abonnés</span>
-                    </div>
-                    <div class="stat-card">
-                        <span class="stat-number">47</span>
-                        <span class="stat-label">Projets</span>
-                    </div>
-                    <div class="stat-card">
-                        <span class="stat-number">3</span>
-                        <span class="stat-label">Ans d'expérience</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="glass links-section">
-                <a href="https://wa.me/2250574187127" class="link-icon-button" target="_blank" title="WhatsApp">
-                    <svg viewBox="0 0 24 24" fill="currentColor" width="32" height="32">
-                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a9.87 9.87 0 00-4.946 1.347l-.356.192-3.685-1.105 1.169 3.409-.239.392a9.86 9.86 0 001.341 4.718l.267.394 3.861.117a9.997 9.997 0 005.175-1.447 9.998 9.998 0 003.467-4.733 9.994 9.994 0 00-1.466-10.333 9.994 9.994 0 00-7.81-2.7M12 0C5.383 0 0 5.383 0 12s5.383 12 12 12 12-5.383 12-12S18.617 0 12 0Z"/>
-                    </svg>
-                </a>
-                <a href="https://www.facebook.com/share/19z8TnLsSy/" class="link-icon-button" target="_blank" title="Facebook">
-                    <svg viewBox="0 0 24 24" fill="currentColor" width="32" height="32">
-                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073Z"/>
-                    </svg>
-                </a>
-                <a href="https://www.instagram.com/capidiom2.7?igsh=aGcwdXV4N2VyeXNp" class="link-icon-button" target="_blank" title="Instagram">
-                    <svg viewBox="0 0 24 24" fill="currentColor" width="32" height="32">
-                        <path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.117.63c-.794.297-1.473.645-2.148 1.32-.676.675-1.023 1.354-1.32 2.148-.297.788-.5 1.657-.56 2.935C.015 8.334 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.263 2.148.56 2.935.297.793.645 1.473 1.32 2.147.675.676 1.354 1.023 2.148 1.32.788.298 1.658.5 2.935.56 1.28.058 1.687.072 4.947.072s3.667-.015 4.947-.072c1.280-.06 2.149-.262 2.937-.56.793-.297 1.472-.645 2.147-1.32.676-.676 1.022-1.355 1.32-2.147.297-.789.5-1.658.56-2.937.058-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.28-.263-2.149-.56-2.937-.298-.793-.646-1.472-1.32-2.147-.676-.676-1.355-1.023-2.148-1.32-.788-.298-1.658-.5-2.937-.56-1.28-.058-1.687-.072-4.947-.072ZM12 2.163c3.204 0 3.584.012 4.85.07 1.17.054 1.805.247 2.228.41.56.217.96.477 1.382.896.419.42.679.822.896 1.381.164.423.356 1.059.41 2.228.058 1.265.07 1.645.07 4.849 0 3.204-.012 3.584-.07 4.849-.054 1.17-.247 1.805-.41 2.228-.217.56-.477.96-.896 1.382-.42.419-.822.679-1.381.896-.423.164-1.059.356-2.228.41-1.265.058-1.645.07-4.849.07-3.204 0-3.584-.012-4.849-.07-1.17-.054-1.805-.247-2.228-.41-.56-.217-.96-.477-1.382-.896-.419-.42-.679-.822-.896-1.381-.164-.423-.356-1.059-.41-2.228-.058-1.265-.07-1.645-.07-4.849 0-3.204.012-3.584.07-4.849.054-1.17.247-1.805.41-2.228.217-.56.477-.96.896-1.382.42-.419.822-.679 1.381-.896.423-.164 1.059-.356 2.228-.41 1.265-.058 1.645-.07 4.849-.07Z"/>
-                        <path d="M12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324ZM12 16a4 4 0 110-8 4 4 0 010 8Z"/>
-                        <circle cx="18.406" cy="5.595" r="1.44"/>
-                    </svg>
-                </a>
-                <a href="https://x.com/AmaraD52591?t=HnUOvL9T3mb_LWG9JaxKXw&s=08" class="link-icon-button" target="_blank" title="Twitter">
-                    <svg viewBox="0 0 24 24" fill="currentColor" width="32" height="32">
-                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.657l-5.223-6.831-5.974 6.831H2.42l7.723-8.835L1.254 2.25h6.554l4.721 6.231 5.995-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/>
-                    </svg>
-                </a>
-                <a href="https://www.tiktok.com/@yongdioma?_t=ZM-8yYDojuMa1w&_r=1" class="link-icon-button" target="_blank" title="TikTok">
-                    <svg viewBox="0 0 24 24" fill="currentColor" width="32" height="32">
-                        <path d="M19.498 3.02h2.194V16.24c0 2.592-2.104 4.697-4.695 4.697-2.592 0-4.696-2.105-4.696-4.697 0-2.59 2.104-4.696 4.696-4.696.388 0 .768.048 1.135.139V9.035c-.38-.053-.768-.081-1.135-.081-4.818 0-8.732 3.914-8.732 8.732s3.914 8.732 8.732 8.732 8.732-3.914 8.732-8.732V3.02Z"/>
-                        <path d="M12.503 0C5.596 0 0 5.596 0 12.503s5.596 12.503 12.503 12.503 12.503-5.596 12.503-12.503S19.41 0 12.503 0Zm0 23.4c-6.016 0-10.897-4.881-10.897-10.897S6.487 1.606 12.503 1.606s10.897 4.881 10.897 10.897-4.881 10.897-10.897 10.897Z"/>
-                    </svg>
-                </a>
-                <a href="https://t.me/yongdioma" class="link-icon-button" target="_blank" title="Telegram">
-                    <svg viewBox="0 0 24 24" fill="currentColor" width="32" height="32">
-                        <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a11.955 11.955 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.96 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.365-1.371.155-.479-.147-1.33-.515-1.982-.942-.798-.51-1.429-1.268-.156-1.334.568-.047 1.432.374 2.074.588.632.205 1.876.471 2.457.603.552.113 1.041.056 1.41-.146.365-.201 1.304-1.617 1.541-1.954.232-.326.232-.842.12-.994-.112-.152-.439-.187-.683-.111-.227.06-1.905 1.189-5.702 3.76-1.119.79-2.067.991-2.845.999-.944.007-1.359-.538-.639-1.425.505-.83 1.465-1.656 2.182-1.904 1.297-.348 2.365-.203 2.969-.122 1.675.228 2.85 1.42 3.737 2.332.848.889 1.58 1.738 1.762 2.852.381 2.286-.363 3.541-1.371 3.747-.267.05-.49.046-.743-.013Z"/>
-                    </svg>
-                </a>
-                <a href="https://www.youtube.com/@yongdioma" class="link-icon-button" target="_blank" title="YouTube">
-                    <svg viewBox="0 0 24 24" fill="currentColor" width="32" height="32">
-                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                    </svg>
-                </a>
-            </div>
-            
-            <div class="portfolio">
-                <h2>Mes Projets Créatifs</h2>
-                <div class="projects-grid">
-                    <div class="project-card">
-                        <div class="project-image">
-                            <img src="https://via.placeholder.com/400x200/4a5568/ffffff?text=Application+Web" alt="Application Web">
-                        </div>
-                        <div class="project-info">
-                            <h3>Application Web</h3>
-                            <p>Développement front-end avec React</p>
-                            <span class="project-status">Terminé</span>
-                        </div>
-                    </div>
-                    <div class="project-card">
-                        <div class="project-image">
-                            <img src="https://via.placeholder.com/400x200/2d3748/ffffff?text=Design+UI/UX" alt="Design UI/UX">
-                        </div>
-                        <div class="project-info">
-                            <h3>Design UI/UX</h3>
-                            <p>Création d'interfaces utilisateur modernes</p>
-                            <span class="project-status">En cours</span>
-                        </div>
-                    </div>
-                    <div class="project-card">
-                        <div class="project-image">
-                            <img src="https://via.placeholder.com/400x200/744210/ffffff?text=Production+Musicale" alt="Production musicale">
-                        </div>
-                        <div class="project-info">
-                            <h3>Production Musicale</h3>
-                            <p>Composition et arrangement sur BandLab</p>
-                            <span class="project-status">Terminé</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="gallery-section">
-                <h2>Mon Univers Créatif</h2>
-                <div class="gallery-grid">
-                    <div class="gallery-item">
-                        <img src="merci.png" alt="Reconnaissance" onerror="this.src='https://via.placeholder.com/300x300/4a5568/ffffff?text=Reconnaissance'">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="i.jpg" alt="Portrait" onerror="this.src='https://via.placeholder.com/300x300/2d3748/ffffff?text=Portrait'">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="love.jpg" alt="Passion" onerror="this.src='https://via.placeholder.com/300x300/702459/ffffff?text=Passion'">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="goat.jpg" alt="Réussite" onerror="this.src='https://via.placeholder.com/300x300/744210/ffffff?text=Réussite'">
-                    </div>
-                </div>
-            </div>
+    <div class="container">
+        <header>
+            <h1 class="glowing-title">Mr Diomandé</h1>
+            <h2 class="subtitle">Ingénieur en Gbat, créateur de contenu Web, Artiste et Sportif</h2>
+        </header>
+
+        <!-- Photo de profil avec effet 3D amélioré -->
+        <div class="photo-profil profile-3d" id="profile-pic">
+            <img src="profil.jpg" alt="Photo de Mr Diomande">
+            <div class="profile-overlay"></div>
         </div>
+
+        <!-- Réseaux sociaux avec effets premium améliorés -->
+        <div class="social-links">
+            <a href="https://wa.me/2250574187127" class="whatsapp" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-whatsapp"></i>
+                <span class="tooltip">WhatsApp</span>
+            </a>
+            <a href="https://www.facebook.com/share/19z8TnLsSy/" class="facebook" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-facebook-f"></i>
+                <span class="tooltip">Facebook</span>
+            </a>
+            <a href="https://x.com/AmaraD52591" class="twitter" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-x-twitter"></i>
+                <span class="tooltip">Twitter/X</span>
+            </a>
+            <a href="https://www.instagram.com/capidiom2.7?igsh=aGcwdXV4N2VyeXNp" class="instagram" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-instagram"></i>
+                <span class="tooltip">Instagram</span>
+            </a>
+            <a href="https://tiktok.com/@yongdioma" class="tiktok" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-tiktok"></i>
+                <span class="tooltip">TikTok</span>
+            </a>
+            <a href="https://bandlab.com/27_kara" class="bandlab" target="_blank" rel="noopener noreferrer">
+                <svg class="bandlab-icon" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 22c-5.5 0-10-4.5-10-10S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10zm3.6-14.2L12 10.4 8.4 7.8l-1.2 1.6 3.6 2.6-3.6 2.6 1.2 1.6 3.6-2.6 3.6 2.6 1.2-1.6-3.6-2.6 3.6-2.6-1.2-1.6z"/></svg>
+                <span class="tooltip">BandLab</span>
+            </a>
+            <a href="https://snapchat.com/add/amarayong27" class="snapchat" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-snapchat-ghost"></i>
+                <span class="tooltip">Snapchat</span>
+            </a>
+        </div>
+
+        <!-- Section Statistiques -->
+        <section class="stats">
+            <div class="stat-item">
+                <div class="stat-number" data-target="12500">0</div>
+                <div class="stat-label">Abonnés</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" data-target="47">0</div>
+                <div class="stat-label">Projets</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" data-target="3">0</div>
+                <div class="stat-label">Années d'expérience</div>
+            </div>
+        </section>
+
+        <!-- Portfolio Interactif -->
+        <section class="portfolio">
+            <h2><em class="glowing-text">Mes Projets Créatifs</em></h2>
+            <div class="projects-grid">
+                <div class="project-card" data-category="developpement">
+                    <div class="project-image">
+                        <img src="projet1.jpg" alt="Application Web" onerror="this.src='https://via.placeholder.com/400x200/4a5568/ffffff?text=Application+Web'">
+                    </div>
+                    <div class="project-info">
+                        <h3>Application Web</h3>
+                        <p>Développement front-end avec React</p>
+                        <span class="project-status">Terminé</span>
+                    </div>
+                </div>
+                <div class="project-card" data-category="design">
+                    <div class="project-image">
+                        <img src="projet2.jpg" alt="Design d'interface" onerror="this.src='https://via.placeholder.com/400x200/2d3748/ffffff?text=Design+UI/UX'">
+                    </div>
+                    <div class="project-info">
+                        <h3>Design UI/UX</h3>
+                        <p>Création d'interfaces utilisateur modernes</p>
+                        <span class="project-status">En cours</span>
+                    </div>
+                </div>
+                <div class="project-card" data-category="musique">
+                    <div class="project-image">
+                        <img src="projet3.jpg" alt="Production musicale" onerror="this.src='https://via.placeholder.com/400x200/744210/ffffff?text=Production+Musicale'">
+                    </div>
+                    <div class="project-info">
+                        <h3>Production Musicale</h3>
+                        <p>Composition et arrangement sur BandLab</p>
+                        <span class="project-status">Terminé</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Galerie premium améliorée -->
+        <section class="galerie">
+            <h2><em class="glowing-text">Mon Univers Créatif</em></h2>
+            
+            <div class="miniatures">
+                <div class="gallery-item">
+                    <img src="merci.png" alt="Expression de reconnaissance" loading="lazy" onerror="this.src='https://via.placeholder.com/300x300/4a5568/ffffff?text=Reconnaissance'">
+                    <div class="item-overlay">
+                        <h3>Reconnaissance</h3>
+                        <p>Cliquez pour agrandir</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="i.jpg" alt="Portrait de Amara" loading="lazy" onerror="this.src='https://via.placeholder.com/300x300/2d3748/ffffff?text=Portrait'">
+                    <div class="item-overlay">
+                        <h3>Portrait</h3>
+                        <p>Cliquez pour agrandir</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="love.jpg" alt="Moment de passion" loading="lazy" onerror="this.src='https://via.placeholder.com/300x300/702459/ffffff?text=Passion'">
+                    <div class="item-overlay">
+                        <h3>Passion</h3>
+                        <p>Cliquez pour agrandir</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="goat.jpg" alt="Réussite personnelle" loading="lazy" onerror="this.src='https://via.placeholder.com/300x300/744210/ffffff?text=Réussite'">
+                    <div class="item-overlay">
+                        <h3>Réussite</h3>
+                        <p>Cliquez pour agrandir</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lightbox premium -->
+        <div class="lightbox" id="lightbox">
+            <span class="close">&times;</span>
+            <span class="prev">&#10094;</span>
+            <span class="next">&#10095;</span>
+            <img class="lightbox-content" id="lightbox-img" alt="Image agrandie">
+            <div class="lightbox-caption"></div>
+        </div>
+
+        <!-- Footer amélioré -->
+        <footer class="animated-footer">
+            <div class="typing-container">
+                <p class="typing-effect">"Créativité sans frontières"<span class="cursor">|</span></p>
+            </div>
+            <div class="social-float">
+                <a href="#" class="back-to-top" aria-label="Retour en haut">
+                    <i class="fas fa-arrow-up"></i>
+                </a>
+            </div>
+            <p class="copyright">&copy; 2023-2025 Mr Diomandé. Tous droits réservés.</p>
+        </footer>
     </div>
-    
-    <footer class="footer">
-        <p class="typing-effect" id="typing-text"></p>
-        <p style="margin-top: 15px; opacity: 0.75;">© 2023-2025 Mr Diomandé. Tous droits réservés.</p>
-    </footer>
-    
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
-        // Typing effect
-        const typingText = '"Créativité sans frontières"';
-        const typingElement = document.getElementById('typing-text');
-        let index = 0;
-        
-        function typeWriter() {
-            if (index < typingText.length) {
-                typingElement.textContent += typingText.charAt(index);
-                index++;
-                setTimeout(typeWriter, 80);
-            } else {
-                // Add cursor after typing is done
-                const cursor = document.createElement('span');
-                cursor.className = 'cursor';
-                cursor.textContent = '|';
-                typingElement.appendChild(cursor);
+        const motivationMessages = [
+            "Le sommeil c'est pour les héritiers, et le travail c'est pour les guerriers comme Diom",
+            "Le succès c'est tomber 7 fois et se relever 8 - Proverbe japonais",
+            "La seule limite à votre impact est votre imagination et votre engagement - Tony Robbins",
+            "Le succès n'est pas final, l'échec n'est pas fatal - Winston Churchill",
+            "Le chemin vers le succès est toujours en construction - Lily Tomlin",
+            "Le succès, c'est d'aller d'échec en échec sans perdre son enthousiasme - Winston Churchill",
+            "Pour réussir, il faut d'abord croire que nous pouvons - Nikos Kazantzakis",
+            "La réussite est un mauvais professeur - Bill Gates",
+            "Le succès n'est pas la clé du bonheur. Le bonheur est la clé du succès - Albert Schweitzer",
+            "La discipline est le pont entre les objectifs et leur réalisation - Jim Rohn",
+            "La créativité, c'est l'intelligence qui s'amuse - Albert Einstein",
+            "Ne craignez pas la perfection, vous ne l'atteindrez jamais - Salvador Dali",
+            "La créativité ne consiste pas à attendre l'inspiration, mais à la poursuivre avec une massue - Jack London",
+            "Crois en toi et tout deviendra possible - Inconnu",
+            "La confiance en soi est le premier secret du succès - Ralph Waldo Emerson"
+        ];
+
+        function getRandomMotivation() {
+            return motivationMessages[Math.floor(Math.random() * motivationMessages.length)];
+        }
+
+        function updateMotivation() {
+            const textElement = document.getElementById('motivation-text');
+            if (textElement) {
+                textElement.textContent = '"' + getRandomMotivation() + '"';
             }
         }
-        
-        // Start typing effect when page loads
-        window.addEventListener('load', typeWriter);
-        
-        // Animated stats counter
-        const statNumbers = document.querySelectorAll('.stat-number');
-        statNumbers.forEach(stat => {
-            const target = parseInt(stat.textContent) || 0;
-            let current = 0;
-            const increment = target / 30;
-            const timer = setInterval(() => {
-                current += increment;
-                if (current >= target) {
-                    stat.textContent = stat.textContent;
-                    clearInterval(timer);
-                } else {
-                    stat.textContent = Math.floor(current) + (target > 1000 ? 'K' : '');
-                }
-            }, 50);
-        });
-        
-        // Matrix effect - CSS ANIMATION PURE (pas de timers, juste du CSS)
-        const matrixBg = document.getElementById('matrix-bg');
-        const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
-        
-        // Créer 12 éléments FIXES
-        for (let i = 0; i < 12; i++) {
-            const char = document.createElement('div');
-            char.className = 'matrix-char';
-            char.textContent = chars.charAt(Math.floor(Math.random() * chars.length));
-            char.style.left = (i * 60) + 'px';
-            char.style.animationDelay = (i * 0.3) + 's';
-            matrixBg.appendChild(char);
+
+        function shareMotivation() {
+            const text = document.getElementById('motivation-text').textContent;
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Mr Diomandé',
+                    text: text,
+                    url: window.location.href
+                });
+            } else {
+                alert('Message de motivation copié: ' + text);
+            }
         }
+
+        function tweetMotivation() {
+            const text = encodeURIComponent(document.getElementById('motivation-text').textContent);
+            window.open(`https://twitter.com/intent/tweet?text=${text}`, '_blank');
+        }
+
+        function closeBanner() {
+            document.getElementById('motivation-section').style.display = 'none';
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            updateMotivation();
+            setInterval(updateMotivation, 30000);
+
+            const themeButtons = document.querySelectorAll('.theme-btn');
+            themeButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const theme = this.getAttribute('data-theme');
+                    document.body.setAttribute('data-theme', theme);
+                    localStorage.setItem('theme', theme);
+                    themeButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.body.setAttribute('data-theme', savedTheme);
+        });
     </script>
 </body>
 </html>
