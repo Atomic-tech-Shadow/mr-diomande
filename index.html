@@ -17,16 +17,15 @@
         
         /* Sélecteur de thème */
         .theme-selector {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
+            position: relative;
             display: flex;
             gap: 10px;
-            background: rgba(0,0,0,0.7);
-            padding: 10px;
+            background: rgba(0,0,0,0.5);
+            padding: 15px 20px;
             border-radius: 30px;
             backdrop-filter: blur(10px);
+            width: fit-content;
+            margin: 20px auto;
         }
         
         .theme-btn {
@@ -127,6 +126,7 @@
             align-items: center;
             gap: 15px;
             flex-grow: 1;
+            justify-content: center;
         }
         
         .motivation-text {
@@ -138,7 +138,7 @@
         }
         
         .motivation-actions {
-            display: flex;
+            display: none;
             gap: 10px;
         }
         
@@ -328,8 +328,7 @@
             }
             
             .theme-selector {
-                top: 10px;
-                right: 10px;
+                margin: 15px auto;
             }
         }
     </style>
