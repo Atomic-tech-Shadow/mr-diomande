@@ -85,7 +85,10 @@ header {
 .photo-profil {
     display: flex;
     justify-content: center;
-    margin: 40px 0;
+    align-items: center;
+    width: 100%;
+    margin: 40px auto;
+    padding: 20px 0;
 }
 
 .profile-3d {
