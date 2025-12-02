@@ -397,7 +397,7 @@
         </div>
 
         <!-- Section Statistiques -->
-        <section class="stats">
+        <section class="stats" id="stats">
             <div class="stat-item">
                 <div class="stat-number" data-target="12500">0</div>
                 <div class="stat-label">Abonnés</div>
@@ -413,7 +413,7 @@
         </section>
 
         <!-- Portfolio Interactif -->
-        <section class="portfolio">
+        <section class="portfolio" id="portfolio">
             <h2><em class="glowing-text">Mes Projets Créatifs</em></h2>
             <div class="projects-grid">
                 <div class="project-card" data-category="developpement">
@@ -450,7 +450,7 @@
         </section>
 
         <!-- Galerie premium améliorée -->
-        <section class="galerie">
+        <section class="galerie" id="galerie">
             <h2><em class="glowing-text">Mon Univers Créatif</em></h2>
             
             <div class="miniatures">
@@ -499,6 +499,12 @@
             <div class="typing-container">
                 <p class="typing-effect">"Créativité sans frontières"<span class="cursor">|</span></p>
             </div>
+            <div class="footer-links">
+                <a href="#profile-pic">À propos</a>
+                <a href="#portfolio">Portfolio</a>
+                <a href="#galerie">Galerie</a>
+                <a href="mailto:contact@diomande.com">Contact</a>
+            </div>
             <div class="social-float">
                 <a href="#" class="back-to-top" aria-label="Retour en haut">
                     <i class="fas fa-arrow-up"></i>
@@ -507,6 +513,11 @@
             <p class="copyright">&copy; 2023-2025 Mr Diomandé. Tous droits réservés.</p>
         </footer>
     </div>
+
+    <!-- Bouton flottant retour en haut -->
+    <button class="floating-up-btn" id="floating-up-btn" aria-label="Retour en haut">
+        <i class="fas fa-chevron-up"></i>
+    </button>
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
@@ -784,6 +795,44 @@
             if (typeof particlesJS !== 'undefined') {
                 updateParticlesColor('light');
             }
+
+            // Gérer le bouton flottant retour en haut
+            const floatingBtn = document.getElementById('floating-up-btn');
+            if (floatingBtn) {
+                window.addEventListener('scroll', function() {
+                    if (window.scrollY > 300) {
+                        floatingBtn.classList.add('show');
+                    } else {
+                        floatingBtn.classList.remove('show');
+                    }
+                });
+
+                floatingBtn.addEventListener('click', function() {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
+
+            // Animation des sections au scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.stat-item, .project-card, .gallery-item').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
         });
     </script>
     <script src="yong.js" defer></script>
