@@ -828,6 +828,9 @@
 
         // Initialiser les particules
         document.addEventListener('DOMContentLoaded', function() {
+            // Initialiser le sélecteur de thème
+            initThemeSelector();
+            
             if (typeof particlesJS !== 'undefined') {
                 updateParticlesColor('light');
             }
