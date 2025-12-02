@@ -811,24 +811,19 @@
         function typeQuoteWithFallEffect(quote) {
             const quoteElement = document.getElementById('quote-text');
             quoteElement.innerHTML = '';
-            let index = 0;
             
-            function addLetter() {
-                if (index < quote.length) {
-                    const char = quote[index];
-                    const span = document.createElement('span');
-                    span.className = 'falling-letter';
-                    if (char === ' ') {
-                        span.classList.add('space');
-                    }
-                    span.textContent = char;
-                    span.style.animationDelay = (index * 0.04) + 's';
-                    quoteElement.appendChild(span);
-                    index++;
-                    setTimeout(addLetter, 30);
+            // Afficher tout le texte immédiatement avec l'animation
+            for (let i = 0; i < quote.length; i++) {
+                const char = quote[i];
+                const span = document.createElement('span');
+                span.className = 'falling-letter';
+                if (char === ' ') {
+                    span.classList.add('space');
                 }
+                span.textContent = char;
+                span.style.animationDelay = (i * 0.035) + 's';
+                quoteElement.appendChild(span);
             }
-            addLetter();
         }
 
         // Initialiser les particules
@@ -843,7 +838,7 @@
             setInterval(() => {
                 quoteIndex = (quoteIndex + 1) % quotes.length;
                 typeQuoteWithFallEffect(quotes[quoteIndex]);
-            }, 8000);
+            }, 7000);
 
             // Gérer le bouton flottant retour en haut
             const floatingBtn = document.getElementById('floating-up-btn');
