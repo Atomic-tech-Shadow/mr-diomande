@@ -1075,15 +1075,26 @@ body[data-theme="gold"] .floating-up-btn:hover {
     }
 
     .stats {
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
         justify-content: flex-start;
-        gap: 10px;
-        padding: 15px 10px;
+        gap: 8px;
+        padding: 12px 10px;
+        overflow-x: auto;
     }
 
     .stat-item {
-        min-width: 75px;
-        padding: 8px 10px;
+        min-width: 70px;
+        padding: 6px 8px;
+        flex-shrink: 0;
+    }
+    
+    .stat-number {
+        font-size: 18px;
+        margin-bottom: 2px;
+    }
+    
+    .stat-label {
+        font-size: 9px;
     }
 
     .miniatures {
