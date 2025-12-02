@@ -353,23 +353,6 @@
         </button>
     </div>
     
-    <!-- Bannière de motivation -->
-    <section class="motivation-section" id="motivation-section">
-        <div class="motivation-banner">
-            <div class="motivation-content">
-                <p class="motivation-text" id="motivation-text">"Le sommeil c'est pour les héritiers, et le travail c'est pour les guerriers comme Diom"</p>
-                <div class="motivation-actions">
-                    <button class="share-btn" onclick="shareMotivation()">
-                        <i class="fas fa-share"></i> Partager
-                    </button>
-                    <button class="social-share" onclick="tweetMotivation()">
-                        <i class="fab fa-x-twitter"></i>
-                    </button>
-                </div>
-            </div>
-            <button class="close-banner" onclick="closeBanner()">×</button>
-        </div>
-    </section>
     
     <div class="container">
         <header>
@@ -816,11 +799,51 @@
             });
         }
 
+        // Citations inspirantes
+        const quotes = [
+            "Le succès c'est tomber 7 fois et se relever 8 - Proverbe japonais",
+            "La vie est 10% ce qui t'arrive, 90% comment tu y réponds",
+            "Créer c'est faire la différence dans ce monde",
+            "Sois toi-même, c'est ton plus grand atout",
+            "L'art est la voice de l'âme"
+        ];
+
+        function typeQuoteWithFallEffect(quote) {
+            const quoteElement = document.getElementById('quote-text');
+            quoteElement.innerHTML = '';
+            let index = 0;
+            
+            function addLetter() {
+                if (index < quote.length) {
+                    const char = quote[index];
+                    const span = document.createElement('span');
+                    span.className = 'falling-letter';
+                    if (char === ' ') {
+                        span.classList.add('space');
+                    }
+                    span.textContent = char;
+                    span.style.animationDelay = (index * 0.08) + 's';
+                    quoteElement.appendChild(span);
+                    index++;
+                    setTimeout(addLetter, 60);
+                }
+            }
+            addLetter();
+        }
+
         // Initialiser les particules
         document.addEventListener('DOMContentLoaded', function() {
             if (typeof particlesJS !== 'undefined') {
                 updateParticlesColor('light');
             }
+
+            // Animation des citations
+            let quoteIndex = 0;
+            typeQuoteWithFallEffect(quotes[quoteIndex]);
+            setInterval(() => {
+                quoteIndex = (quoteIndex + 1) % quotes.length;
+                typeQuoteWithFallEffect(quotes[quoteIndex]);
+            }, 8000);
 
             // Gérer le bouton flottant retour en haut
             const floatingBtn = document.getElementById('floating-up-btn');
