@@ -647,7 +647,9 @@
         // Fonction pour fermer la bannière
         function closeBanner() {
             const motivationSection = document.getElementById('motivation-section');
-            motivationSection.style.display = 'none';
+            if (motivationSection) {
+                motivationSection.style.display = 'none';
+            }
             bannerClosed = true;
             clearInterval(motivationInterval);
             
