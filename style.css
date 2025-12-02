@@ -266,11 +266,11 @@ body[data-theme="gold"] .social-links a:hover {
 
 /* Section Statistiques */
 .stats {
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
     gap: 40px;
     padding: 80px 20px;
-    flex-wrap: wrap;
     background: rgba(0, 0, 0, 0.1);
     border-radius: 20px;
     margin: 60px 0;

@@ -632,6 +632,7 @@
             if (bannerClosed) return;
             
             const motivationText = document.getElementById('motivation-text');
+            if (!motivationText) return;
             
             // Effet de fondu
             motivationText.style.opacity = '0';
