@@ -17,15 +17,17 @@
         
         /* Sélecteur de thème */
         .theme-selector {
-            position: relative;
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            z-index: 998;
             display: flex;
             gap: 10px;
-            background: rgba(0,0,0,0.5);
-            padding: 15px 20px;
+            background: rgba(0,0,0,0.7);
+            padding: 12px 15px;
             border-radius: 30px;
             backdrop-filter: blur(10px);
-            width: fit-content;
-            margin: 20px auto;
+            flex-direction: column;
         }
         
         .theme-btn {
@@ -328,7 +330,8 @@
             }
             
             .theme-selector {
-                margin: 15px auto;
+                bottom: 90px;
+                right: 20px;
             }
         }
     </style>
