@@ -267,30 +267,32 @@ body[data-theme="gold"] .social-links a:hover {
 /* Section Statistiques */
 .stats {
     display: flex;
-    justify-content: center;
-    gap: 20px;
-    padding: 40px 20px;
-    background: rgba(0, 0, 0, 0.1);
-    border-radius: 20px;
-    margin: 60px 0;
+    justify-content: flex-start;
+    gap: 15px;
+    padding: 20px;
+    background: transparent;
+    border-radius: 0;
+    margin: 40px 0;
     animation: slideInUp 1s ease-out 0.4s both;
     flex-wrap: nowrap;
+    align-items: center;
 }
 
 body[data-theme="light"] .stats {
-    background: rgba(0, 0, 0, 0.02);
+    background: transparent;
 }
 
 .stat-item {
     text-align: center;
-    padding: 15px 20px;
+    padding: 10px 15px;
     background: rgba(255,255,255,0.08);
-    border-radius: 15px;
-    min-width: 100px;
+    border-radius: 10px;
+    min-width: 90px;
     backdrop-filter: blur(10px);
     border: 2px solid rgba(255, 107, 107, 0.3);
     transition: all 0.3s ease;
     animation: fadeInScale 0.6s ease-out forwards;
+    flex-shrink: 0;
 }
 
 .stat-item:nth-child(1) { animation-delay: 0.4s; }

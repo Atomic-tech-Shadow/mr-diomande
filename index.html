@@ -605,18 +605,11 @@
 
         // Initialisation au chargement de la page
         document.addEventListener('DOMContentLoaded', function() {
-            // Démarrer le changement de messages
-            startMotivationMessages();
-            
             // Initialiser les statistiques
             initStats();
             
             // Initialiser le sélecteur de thème
             initThemeSelector();
-            
-            // Vérifier si la bannière a été fermée précédemment
-            checkBannerState();
-        });
 
         // Fonction pour démarrer le changement de messages
         function startMotivationMessages() {
